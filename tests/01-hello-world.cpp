@@ -11,11 +11,11 @@ assert(g.AddVertex(1) == true);
 assert(g.AddVertex(2) == true);
 assert(g.AddVertex(3) == true);
 assert(g.AddEdge(1, 2) == true);
-assert(g.AddEdge(1, 1) == true);
-assert(g.AddEdge(1, 1) == false);
+assert(g.AddEdge(1, 1) == true); printf("14\n");
+assert(g.AddEdge(1, 1) == false); 
 assert(g.ContainsEdge(1, 1) == true);
-assert(g.RemoveEdge(1,1) == true);
-assert(g.AddEdge(1, 1) == true);
+assert(g.RemoveEdge(1, 1) == true);
+assert(g.AddEdge(1, 1) == true); printf("18\n");
 assert(g.GetVertices().size() == g.CountVertices()); // 4
 /*
 printf("%lu\n", g.GetEdges().size());
