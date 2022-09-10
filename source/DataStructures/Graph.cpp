@@ -29,17 +29,6 @@ bool Graph::RemoveVertex(int vertex)
     std::vector<int>::iterator k = find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
     if(k == vertexs.end())
         return false;//查找不到，不能删除
-    //否则，代表查找到了，可以删除。
-    for(std::vector<int>::iterator it = vertexs.begin() ; it != vertexs.end() ; it++) //这里遍历所有节点
-        {
-            for(std::vector<int>::iterator i = Edges[*it].begin() ; i != Edges[*it].end() ; i++) //这里遍历所有的边,*it->*i
-                {
-                    if(*i == vertex) //*it->vertex exists an edge
-                        {
-                            Edges[*it].erase(i);//Update Neighbors
-                        }
-                }
-        }
     vertexs.erase(k);
     return true;
 }
@@ -184,8 +173,11 @@ std::vector<Edge> Graph::GetIncomingEdges(int vertex) const
     ans.clear();
     for(std::vector<int>::iterator it = endlist.begin() ; it != endlist.end() ; it++) //这里遍历所有节点
         {
-            Edge t(vertex, *it);//vertex->*it
-            ans.push_back(t);
+            if(find(v.begin(), v.end(), *it) != v.end())
+            {
+                Edge t(vertex, *it);//vertex->*it
+                ans.push_back(t);
+            }
         }
     return ans;
   }
@@ -195,8 +187,14 @@ std::vector<Edge> Graph::GetIncomingEdges(int vertex) const
     std::vector<int>::iterator i1  = find(v.begin(), v.end(), vertex);
     if(i1 == v.end())
         return 0;
+    int ans = 0;
     std::map<int, std::vector<int> > S = Edges;
-        return S[vertex].size();
+    for (std::vector<int>::iterator it = S[vertex].begin() ; it != S[vertex].end() ; it++)
+        {
+            if(find(v.begin(), v.end(), *it) != v.end())
+                ans++;
+        }
+    return ans;
   }
   std::vector<int> Graph::GetNeighbors(int vertex) const
   {
@@ -209,5 +207,12 @@ std::vector<Edge> Graph::GetIncomingEdges(int vertex) const
             return tmp;
         }
     std::map<int, std::vector<int> > S = Edges;
-    return S[vertex];
+    std::vector<int> ans;
+    ans.clear();
+    for (std::vector<int>::iterator it = S[vertex].begin() ; it != S[vertex].end() ; it++)
+        {
+            if(find(v.begin(), v.end(), *it) != v.end())
+                ans.push_back(*it);
+        }
+    return ans;
   }
