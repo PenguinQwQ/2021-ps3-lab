@@ -61,9 +61,9 @@ bool Graph::RemoveEdge(int vertex1, int vertex2)
     std::vector<int>::iterator i2  = find(vertexs.begin(), vertexs.end(), vertex2);
     if(i1 == vertexs.end() || i2 == vertexs.end())
         return false;
-    std::vector<int> vec = Edges[vertex1];//所有vertex1的邻居，也即后继节点。
-    std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex2);
-    if(it == vec.end()) //说明在vec中无vertex2，无法删除不存在的边
+//    std::vector<int> vec = Edges[vertex1];//所有vertex1的邻居，也即后继节点。
+    std::vector<int>::iterator it = find(Edges[vertex1].begin(), Edges[vertex1].end(), vertex2);
+    if(it == Edges[vertex1].end()) //说明在vec中无vertex2，无法删除不存在的边
         return false;
     Edges[vertex1].erase(it);//否则，就删除该节点，也就删除了边。
     return true;
