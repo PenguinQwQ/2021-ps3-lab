@@ -25,6 +25,12 @@ assert(g.ContainsEdge(2, 5) == true);
 
 assert(g.GetVertices().size() == g.CountVertices()); // 4
 printf("%lu\n", g.GetEdges().size());
+std::vector<Edge> test = g.GetEdges();
+for(std::vector<Edge>::iterator it = test.begin() ; it != test.end() ; it++)
+    {
+        printf("(%d,%d)\n", (*it).GetSource(), (*it).GetDestination);
+    }
+
 assert(g.GetEdges().size() == 2);
 assert(g.GetIncomingEdges(1).size() == 0);
 assert(g.GetOutgoingEdges(1).size() == 2); // {{1, 2}, {1, 3}}
