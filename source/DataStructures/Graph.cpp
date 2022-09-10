@@ -14,7 +14,7 @@ Graph::~Graph()
 {}
 bool Graph::AddVertex(int vertex)
 {
-    std::vector<int>::iterator it = find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
+    std::vector<int>::iterator it = std::find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
     if(it != vertexs.end())
         return false;
     //否则，代表可以加点。
@@ -24,7 +24,7 @@ bool Graph::AddVertex(int vertex)
 
 bool Graph::RemoveVertex(int vertex)
 {
-    std::vector<int>::iterator it = find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
+    std::vector<int>::iterator it = std::find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
     if(it == vertexs.end())
         return false;//查找不到，不能删除
     //否则，代表查找到了，可以删除。
@@ -37,7 +37,7 @@ bool Graph::RemoveVertex(int vertex)
 bool Graph::AddEdge(int vertex1, int vertex2)
 {
     std::vector<int> vec = Edges[vertex1];//所有vertex1的邻居，也即后继节点。
-    std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex2);
+    std::vector<int>::iterator it = std::find(vec.begin(), vec.end(), vertex2);
     if(it != vec.end()) //说明在vec中有vertex2，说明该边已存在，那么就不可以重复添加！
         return false;
     Edges[vertex1].push_back(vertex2);//否则，就加边。
@@ -47,7 +47,7 @@ bool Graph::AddEdge(int vertex1, int vertex2)
 bool Graph::RemoveEdge(int vertex1, int vertex2)
 {
     std::vector<int> vec = Edges[vertex1];//所有vertex1的邻居，也即后继节点。
-    std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex2);
+    std::vector<int>::iterator it = std::find(vec.begin(), vec.end(), vertex2);
     if(it == vec.end()) //说明在vec中无vertex2，无法删除不存在的边
         return false;
     Edges[vertex1].erase(it);//否则，就删除该节点，也就删除了边。
@@ -73,7 +73,7 @@ int Graph::CountEdges() const
 bool Graph::ContainsVertex(int vertex) const
 {
     std::vector<int> vec = vertexs;
-    std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex);//在vertex点列中查找vertex
+    std::vector<int>::iterator it = std::find(vec.begin(), vec.end(), vertex);//在vertex点列中查找vertex
     if(it != vec.end())
         return true;
     else  
@@ -83,7 +83,7 @@ bool Graph::ContainsEdge(int vertex1, int vertex2) const
 {
     std::map<int, std::vector<int> > S = Edges;
     std::vector<int> vec = S[vertex1];
-    std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex2);//在vertex点列中查找vertex2
+    std::vector<int>::iterator it = std::find(vec.begin(), vec.end(), vertex2);//在vertex点列中查找vertex2
     if(it != vec.end())
         return true;
     else 
