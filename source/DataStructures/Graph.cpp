@@ -36,6 +36,10 @@ bool Graph::RemoveVertex(int vertex)
 
 bool Graph::AddEdge(int vertex1, int vertex2)
 {
+    std::vector<int>::iterator i1  = find(vertexs.begin(), vertexs.end(), vertex1);
+    std::vector<int>::iterator i2  = find(vertexs.begin(), vertexs.end(), vertex2);
+    if(i1 == vertexs.end() || i2 == vertexs.end())
+        return false;
     std::vector<int> vec = Edges[vertex1];//所有vertex1的邻居，也即后继节点。
     std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex2);
     if(it != vec.end()) //说明在vec中有vertex2，说明该边已存在，那么就不可以重复添加！
