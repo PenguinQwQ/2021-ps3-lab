@@ -1,6 +1,7 @@
 #include <DataStructures/Graph.h>
 #include <DataStructures/Edge.h>
 #include <vector>
+#include <cstdio>
 #include <algorithm>
 #include <map>
 //Constructor
@@ -39,11 +40,17 @@ bool Graph::AddEdge(int vertex1, int vertex2)
     std::vector<int>::iterator i1  = find(vertexs.begin(), vertexs.end(), vertex1);
     std::vector<int>::iterator i2  = find(vertexs.begin(), vertexs.end(), vertex2);
     if(i1 == vertexs.end() || i2 == vertexs.end())
+    {
+        printf("1 false\n");
         return false;
+    }
     std::vector<int> vec = Edges[vertex1];//所有vertex1的邻居，也即后继节点。
     std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex2);
     if(it != vec.end()) //说明在vec中有vertex2，说明该边已存在，那么就不可以重复添加！
+    {
+        printf("2 false\n");    
         return false;
+    }
     Edges[vertex1].push_back(vertex2);//否则，就加边。
     return true;
 }
@@ -176,7 +183,7 @@ std::vector<Edge> Graph::GetIncomingEdges(int vertex) const
   {
     std::vector<int> v = vertexs;
     std::vector<int>::iterator i1  = find(v.begin(), v.end(), vertex);
-    if(i1 == v.end())
+    if(i1 == v.end()) // null index
         {
             std::vector<int> tmp;
             tmp.clear();
