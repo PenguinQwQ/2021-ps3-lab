@@ -154,7 +154,6 @@ std::vector<Edge> Graph::GetIncomingEdges(int vertex) const
         }
     std::map<int, std::vector<int> > S = Edges;
     std::vector<int> endlist = S[vertex];//vertex的所有终点
-    int u, v;
     std::vector<Edge> ans;
     ans.clear();
     for(std::vector<int>::iterator it = endlist.begin() ; it != endlist.end() ; it++) //这里遍历所有节点
