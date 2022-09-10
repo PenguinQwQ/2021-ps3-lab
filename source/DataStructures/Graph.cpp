@@ -41,14 +41,12 @@ bool Graph::AddEdge(int vertex1, int vertex2)
     std::vector<int>::iterator i2  = find(vertexs.begin(), vertexs.end(), vertex2);
     if(i1 == vertexs.end() || i2 == vertexs.end())
     {
-        printf("1 false\n");
         return false;
     }
     std::vector<int> vec = Edges[vertex1];//所有vertex1的邻居，也即后继节点。
     std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex2);
     if(it != vec.end()) //说明在vec中有vertex2，说明该边已存在，那么就不可以重复添加！
-    {
-        printf("2 false\n");    
+    {   
         return false;
     }
     Edges[vertex1].push_back(vertex2);//否则，就加边。
@@ -131,16 +129,24 @@ std::vector<Edge> Graph::GetEdges() const
 }
 std::vector<Edge> Graph::GetIncomingEdges(int vertex) const
 {
+    std::vector<int> v = vertexs;
+    std::vector<int>::iterator i1  = find(v.begin(), v.end(), vertex);
+    if(i1 == v.end())
+        {
+            std::vector<Edge> tmp;
+            tmp.clear();
+            return tmp;
+        }
+
     std::vector<int> vec = vertexs;
     std::map<int, std::vector<int> > S = Edges;
-    int u, v;
     std::vector<Edge> ans;
     ans.clear();
     for(std::vector<int>::iterator it = vec.begin() ; it != vec.end() ; it++) //这里遍历所有节点
         {
             for(std::vector<int>::iterator i = S[*it].begin() ; i != S[*it].end() ; i++) //这里遍历所有的边,*it->*i
                 {
-                    if(*i == vertex) //说明有一条边的终点为verteex
+                    if(*i == vertex) //说明有一条边的终点为vertex
                     {
                        Edge t(*it, vertex);//*it->vertex
                        ans.push_back(t);
