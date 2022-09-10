@@ -31,7 +31,6 @@ bool Graph::RemoveVertex(int vertex)
     //否则，代表查找到了，可以删除。
     vertexs.erase(it);
     return true;
-
 }
 
 
