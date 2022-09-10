@@ -28,7 +28,7 @@ printf("%lu\n", g.GetEdges().size());
 std::vector<Edge> test = g.GetEdges();
 for(std::vector<Edge>::iterator it = test.begin() ; it != test.end() ; it++)
     {
-        printf("(%d,%d)\n", (*it).GetSource(), (*it).GetDestination);
+        printf("(%d,%d)\n", (*it).GetSource(), (*it).GetDestination());
     }
 
 assert(g.GetEdges().size() == 2);
