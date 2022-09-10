@@ -26,11 +26,21 @@ bool Graph::AddVertex(int vertex)
 
 bool Graph::RemoveVertex(int vertex)
 {
-    std::vector<int>::iterator it = find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
-    if(it == vertexs.end())
+    std::vector<int>::iterator i = find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
+    if(i == vertexs.end())
         return false;//查找不到，不能删除
     //否则，代表查找到了，可以删除。
-    vertexs.erase(it);
+    for(std::vector<int>::iterator it = vertexs.begin() ; it != vertexs.end() ; it++) //这里遍历所有节点
+        {
+            for(std::vector<int>::iterator i = Edges[*it].begin() ; i != Edges[*it].end() ; i++) //这里遍历所有的边,*it->*i
+                {
+                    if(*i == vertex) //*it->vertex exists an edge
+                        {
+                            Edges[*it].erase(i);//Update Neighbors
+                        }
+                }
+        }
+    vertexs.erase(i);
     return true;
 }
 
@@ -49,6 +59,9 @@ bool Graph::AddEdge(int vertex1, int vertex2)
     {   
         return false;
     }
+
+
+
     Edges[vertex1].push_back(vertex2);//否则，就加边。
     return true;
 }
@@ -196,5 +209,5 @@ std::vector<Edge> Graph::GetIncomingEdges(int vertex) const
             return tmp;
         }
     std::map<int, std::vector<int> > S = Edges;
-        return S[vertex];
+    return S[vertex];
   }
