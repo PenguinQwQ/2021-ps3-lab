@@ -26,8 +26,8 @@ bool Graph::AddVertex(int vertex)
 
 bool Graph::RemoveVertex(int vertex)
 {
-    std::vector<int>::iterator i = find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
-    if(i == vertexs.end())
+    std::vector<int>::iterator k = find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
+    if(k == vertexs.end())
         return false;//查找不到，不能删除
     //否则，代表查找到了，可以删除。
     for(std::vector<int>::iterator it = vertexs.begin() ; it != vertexs.end() ; it++) //这里遍历所有节点
@@ -40,7 +40,7 @@ bool Graph::RemoveVertex(int vertex)
                         }
                 }
         }
-    vertexs.erase(i);
+    vertexs.erase(k);
     return true;
 }
 
