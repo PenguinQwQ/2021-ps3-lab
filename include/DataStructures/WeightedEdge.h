@@ -14,8 +14,6 @@ class WeightedEdge : public Edge{
       return (this->GetSource() == a.GetSource()) && (this->GetDestination() == a.GetDestination()) && (this->GetWeight() == a.GetWeight());
    }
   public:
-   int GetSource() const;
-   int GetDestination() const;
    int GetWeight() const;
   public:
    int w;
