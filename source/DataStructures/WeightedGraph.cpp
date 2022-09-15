@@ -108,6 +108,24 @@ bool WeightedGraph::ContainsEdge(int vertex1, int vertex2) const
         }
     return false;
 }
+
+int WeightedGraph::GetWeight(int vertex1, int vertex2) const
+{
+    auto ver = vertexs;
+    auto i1  = find(ver.begin(), ver.end(), vertex1);
+    auto i2  = find(ver.begin(), ver.end(), vertex2);
+    if(i1 == ver.end() || i2 == ver.end())
+        return false;
+    auto S = Edges;
+    auto vec = S[vertex1];
+    for (auto it = vec.begin() ; it != vec.end() ; it++)
+        {
+            if((*it).GetDestination() == vertex2)
+                return (*it).GetWeight();
+        }
+    return 0;
+}
+
 std::vector<int> WeightedGraph::GetVertices() const
 {
     return vertexs;
