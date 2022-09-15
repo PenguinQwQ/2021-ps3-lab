@@ -27,11 +27,17 @@ bool WeightedGraph::AddVertex(int vertex)
     return true;
 }
 
-bool WeightedGraph::RemoveVertex(int vertex)
+bool WeightedGraph::RemoveVertex(int vertex) 
 {
     auto k = find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
     if(k == vertexs.end())
         return false;//查找不到，不能删除
+    auto vec = GetIncomingEdges(vertex);
+    for (auto it = vec.begin() ; it != vec.end() ; it++)
+        {
+            int pre = (*it).GetSource();//find vertex's pre
+            Edges[pre].erase(find(Edges[pre].begin(), Edges[pre].end() , WeightedEdge(pre, vertex, 0)));
+        }
     vertexs.erase(k);
     return true;
 }
@@ -138,10 +144,7 @@ std::vector<WeightedEdge> WeightedGraph::GetEdges() const
     ans.clear();
     for(auto it = vec.begin() ; it != vec.end() ; it++) //这里遍历所有节点
         {
-            for(auto i = S[*it].begin() ; i != S[*it].end() ; i++) //这里遍历所有的边,*it->*i
-                {
-                    ans.push_back(*i);
-                }
+            ans.insert(ans.end(), S[*it].begin(), S[*it].end());
         }
     return ans;
 }
@@ -175,6 +178,7 @@ std::vector<WeightedEdge> WeightedGraph::GetIncomingEdges(int vertex) const
 std::vector<WeightedEdge> WeightedGraph::GetOutgoingEdges(int vertex) const
   {
     auto v = vertexs;
+    auto S = Edges;
     auto i1  = find(v.begin(), v.end(), vertex);
     if(i1 == v.end())
         {
@@ -182,18 +186,14 @@ std::vector<WeightedEdge> WeightedGraph::GetOutgoingEdges(int vertex) const
             tmp.clear();
             return tmp;
         }
-    auto S = Edges;
-    auto endlist = S[vertex];//vertex的所有终点
-    std::vector<WeightedEdge> ans;
-    ans.clear();
-    for(auto it = endlist.begin() ; it != endlist.end() ; it++) //这里遍历所有节点
+    auto it = S.find(vertex);
+    if(it == S.end())
         {
-            if(find(v.begin(), v.end(), (*it).GetDestination()) != v.end())
-            {
-                ans.push_back(*it);
-            }
+            std::vector<WeightedEdge> tmp;
+            tmp.clear();
+            return tmp;
         }
-    return ans;
+    return S[vertex];
   }
 int WeightedGraph::GetDegree(int vertex) const
   {
@@ -203,12 +203,10 @@ int WeightedGraph::GetDegree(int vertex) const
         return 0;
     int ans = 0;
     auto S = Edges;
-    for (auto it = S[vertex].begin() ; it != S[vertex].end() ; it++)
-        {
-            if(find(v.begin(), v.end(), (*it).GetDestination()) != v.end())
-                ans++;
-        }
-    return ans;
+    auto it = S.find(vertex);
+    if(it == S.end())
+        return 0;
+    return S[vertex].size();
   }
 std::vector<int> WeightedGraph::GetNeighbors(int vertex) const
   {
@@ -220,13 +218,12 @@ std::vector<int> WeightedGraph::GetNeighbors(int vertex) const
             tmp.clear();
             return tmp;
         }
-    auto S = Edges;
+    auto S = GetOutgoingEdges(vertex);
     std::vector<int> ans;
     ans.clear();
-    for (auto it = S[vertex].begin() ; it != S[vertex].end() ; it++)
+    for (auto it = S.begin() ; it != S.end() ; it++)
         {
-            if(find(v.begin(), v.end(), (*it).GetDestination()) != v.end() && find(ans.begin(), ans.end(), (*it).GetDestination()) == ans.end()) //no resideration of the same point
-                ans.push_back((*it).GetDestination());
+            ans.push_back((*it).GetDestination());
         }
     return ans;
   }
