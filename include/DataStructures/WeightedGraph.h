@@ -14,10 +14,12 @@ class WeightedGraph{
   bool AddEdge(int vertex1, int vertex2, int weight);
   bool RemoveEdge(int vertex1, int vertex2, int weight);
  public:
+
   int CountVertices() const;
   int CountEdges() const;
   bool ContainsVertex(int vertex) const;
   bool ContainsEdge(int vertex1, int vertex2) const;
+  int GetWeight(int vertex1, int vertex2) const;
   std::vector<int> GetVertices() const;
   std::vector<WeightedEdge> GetEdges() const;
   std::vector<WeightedEdge> GetIncomingEdges(int vertex) const;
