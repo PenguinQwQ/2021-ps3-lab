@@ -48,6 +48,8 @@ bool WeightedGraph::AddEdge(int vertex1, int vertex2, int weight)
     auto it = find(Edges[vertex1].begin(), Edges[vertex1].end(), WeightedEdge(vertex1, vertex2, weight));
     if(it != Edges[vertex1].end()) //说明在vec中有vertex2，说明该边已存在，那么就不可以重复添加！
     {   
+        for (auto it = vertexs.begin() ; it != vertexs.end() ; it++)
+            printf("%d\n", *it);
         return false;
     }
     Edges[vertex1].push_back(WeightedEdge(vertex1, vertex2, weight));//否则，就加边。
