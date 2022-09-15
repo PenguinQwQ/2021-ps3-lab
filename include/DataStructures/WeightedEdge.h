@@ -7,7 +7,7 @@ class WeightedEdge : public Edge{
    ~WeightedEdge();
    bool operator ==(const WeightedEdge& a)
    {
-      return (this->u == a.u) && (this->v == a.v) && (this->w == a.w)
+      return (this->u == a.u) && (this->v == a.v) && (this->w == a.w);
    }
   public:
    int GetSource() const;
