@@ -9,6 +9,10 @@ class WeightedEdge : public Edge{
    {
       return (this->u == a.u) && (this->v == a.v) && (this->w == a.w);
    }
+   bool operator ==(WeightedEdge& a)
+   {
+      return (this->u == a.u) && (this->v == a.v) && (this->w == a.w);
+   }
   public:
    int GetSource() const;
    int GetDestination() const;
