@@ -5,6 +5,12 @@
 #include <DataStructures/Edge.h>
 #include <utility>
 
+template<class T, class U>
+std::pair<T, U> operator < (const std::pair<T, U>& x, const std::pair<T, U>& y)
+{
+    return x.first < y.first ||  ((x.first == y.first) && x.second < y.second)
+}
+
 class WeightedGraph : public Graph{
  public:
   WeightedGraph();
@@ -18,7 +24,7 @@ class WeightedGraph : public Graph{
   std::vector<WeightedEdge> GetIncomingEdges(int vertex) const;
   std::vector<WeightedEdge> GetOutgoingEdges(int vertex) const;
   private:
-   std::map<pair<int, int>, int> G;
+   std::map<std::pair<int, int>, int> G;
 
 };
 #endif
