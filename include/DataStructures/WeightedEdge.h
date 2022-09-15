@@ -17,7 +17,7 @@ class WeightedEdge : public Edge{
    int GetSource() const;
    int GetDestination() const;
    int GetWeight() const;
-  private:
-   int u, v, w;
+  public:
+   int w;
 };
 #endif
