@@ -47,3 +47,17 @@ std::vector<WeightedEdge> WeightedGraph::GetOutgoingEdges(int vertex) const
         }
     return ans;
 }
+
+std::vector<WeightedEdge> WeightedGraph::GetEdges() const
+{
+    auto vec = GetVertices();
+    std::vector<WeightedEdge> ans;
+    ans.clear();
+    for (auto it = vec.begin() ; it != vec.end() ; it++)
+        {
+            auto e = GetOutgoingEdges(*it);
+            ans.insert(ans.end(), e.begin(), e.end());
+        }
+    return ans;
+
+}
