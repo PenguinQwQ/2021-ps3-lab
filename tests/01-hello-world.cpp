@@ -11,7 +11,7 @@ assert(g.AddVertex(1) == true);
 assert(g.AddVertex(2) == true);
 assert(g.AddVertex(3) == true);
 assert(g.AddEdge(1,2,2) == true);
-//assert(g.AddEdge(1,3,2) == true);
+assert(g.AddEdge(1,3,2) == true);
 //assert(g.AddEdge(1,3,2) == false);
 assert(g.RemoveVertex(2) == true);
 assert(g.ContainsEdge(1,2) == false);
