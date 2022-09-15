@@ -12,7 +12,7 @@ WeightedGraph::WeightedGraph()
     //初始化
 }
 //Destructor
-Graph::~Graph()
+WeightedGraph::~WeightedGraph()
 {
     this->Edges.clear();
     this->vertexs.clear();
