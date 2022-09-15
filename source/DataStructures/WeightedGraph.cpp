@@ -187,7 +187,7 @@ int WeightedGraph::GetDegree(int vertex) const
     auto S = Edges;
     for (auto it = S[vertex].begin() ; it != S[vertex].end() ; it++)
         {
-            if(find(v.begin(), v.end(), *it) != v.end())
+            if(find(v.begin(), v.end(), (*it).GetDestination()) != v.end())
                 ans++;
         }
     return ans;
