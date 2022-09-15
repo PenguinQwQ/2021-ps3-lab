@@ -1,12 +1,8 @@
 #include <DataStructures/WeightedEdge.h>
 #include <DataStructures/Edge.h>
 
-WeightedEdge::WeightedEdge(int x, int y, int weight)
-{
-    this->u = x;
-    this->v = y;
-    this->w = weight;
-}
+WeightedEdge::WeightedEdge(int x, int y, int weight):Edge(x,y),w(weight){}
+
 
 WeightedEdge::~WeightedEdge()
 {}
