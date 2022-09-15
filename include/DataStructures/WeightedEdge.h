@@ -7,11 +7,11 @@ class WeightedEdge : public Edge{
    ~WeightedEdge();
    bool operator ==(const WeightedEdge& a)
    {
-      return (this->GetSource() == a.GetSource()) && (this->GetDestination() == a.GetDestination()) && (this->GetWeight() == a.GetWeight());
+      return (this->GetSource() == a.GetSource()) && (this->GetDestination() == a.GetDestination());
    }
    bool operator ==(WeightedEdge& a)
    {
-      return (this->GetSource() == a.GetSource()) && (this->GetDestination() == a.GetDestination()) && (this->GetWeight() == a.GetWeight());
+      return (this->GetSource() == a.GetSource()) && (this->GetDestination() == a.GetDestination());
    }
   public:
    int GetWeight() const;
