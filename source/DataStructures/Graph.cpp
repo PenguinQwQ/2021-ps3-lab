@@ -144,7 +144,7 @@ std::vector<Edge> Graph::GetIncomingEdges(int vertex) const
                 vec.push_back(i);
         }
     }
-    return i;
+    return vec;
 }
 std::vector<Edge> Graph::GetOutgoingEdges(int vertex) const
 {
