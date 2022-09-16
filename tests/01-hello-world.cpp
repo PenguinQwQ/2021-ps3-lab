@@ -6,7 +6,7 @@
 #include <DataStructures/WeightedGraph.h>
 int main()
 {
-Graph g; // 创建一张新的图
+WeightedGraph g; // 创建一张新的图
 
 
 assert(g.AddVertex(1) == true);
@@ -19,9 +19,9 @@ assert(g.RemoveVertex(4) == true);
 assert(g.ContainsVertex(4) == false);
 assert(g.RemoveVertex(5) == false);
 
-assert(g.AddEdge(1, 2) == true);
-assert(g.AddEdge(1, 3) == true);
-assert(g.AddEdge(2, 5) == false); // 5号点不存在
+assert(g.AddEdge(1, 2, 1) == true);
+assert(g.AddEdge(1, 3, 2) == true);
+assert(g.AddEdge(2, 5, 3) == false); // 5号点不存在
 assert(g.ContainsEdge(1, 2) == true);
 assert(g.ContainsEdge(2, 5) == false);
 
