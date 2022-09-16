@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <map>
+#include <set>
 
 #include <DataStructures/Edge.h>
 
@@ -27,8 +28,8 @@ class Graph {
   int GetDegree(int vertex) const;
   std::vector<int> GetNeighbors(int vertex) const;
   private:
-   std::map<int, std::vector<int> > Edges;//构造一个map，map[x]返回x键值节点的相连边的列表，用来存储边
-   std::vector<int> vertexs; //构造一个vector，用来存储点。
+   std::map<int, std::vector<Edge> > Edges;//构造一个map，map[x]返回x键值节点的相连边的列表，用来存储边
+   std::set<int> vertexs; //构造一个vector，用来存储点。
 };
 
 #endif

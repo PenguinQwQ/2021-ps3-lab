@@ -59,5 +59,4 @@ std::vector<WeightedEdge> WeightedGraph::GetEdges() const
             ans.insert(ans.end(), e.begin(), e.end());
         }
     return ans;
-
 }

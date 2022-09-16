@@ -13,61 +13,74 @@ Graph::Graph()
 }
 //Destructor
 Graph::~Graph()
-{}
+{
+    this->Edges.clear();
+    this->vertexs.clear();
+}
 bool Graph::AddVertex(int vertex)
 {
-    std::vector<int>::iterator it = find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
-    if(it != vertexs.end())
+    if(vertexs.find(vertex) != vertexs.end())
         return false;
     //否则，代表可以加点。
-    vertexs.push_back(vertex);
+    vertexs.insert(vertex);
+    Edges[vertex].clear();
+
     return true;
 }
 
 bool Graph::RemoveVertex(int vertex)
 {
-    std::vector<int>::iterator k = find(vertexs.begin(), vertexs.end(), vertex);//在vertex点列中查找vertex
-    if(k == vertexs.end())
+    if(vertexs.find(vertex) == vertexs.end())
         return false;//查找不到，不能删除
-    vertexs.erase(k);
+    vertexs.erase(vertex);
     return true;
 }
 
 
 bool Graph::AddEdge(int vertex1, int vertex2)
 {
-    std::vector<int>::iterator i1  = find(vertexs.begin(), vertexs.end(), vertex1);
-    std::vector<int>::iterator i2  = find(vertexs.begin(), vertexs.end(), vertex2);
-    if(i1 == vertexs.end() || i2 == vertexs.end())
+    if(vertexs.find(vertex1) == vertexs.end()) return false;
+    if(vertexs.find(vertex2) == vertexs.end()) return false;
+    Edge e(vertex1, vertex2);
+    if(Edges.find(vertex1) == Edges.end())
     {
-        return false;
+        std::vector<Edge> tmp;
+        tmp.push_back(e);
+        Edges[vertex1] = tmp;
     }
-    std::vector<int> vec = Edges[vertex1];//所有vertex1的邻居，也即后继节点。
-    std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex2);
-    if(it != vec.end()) //说明在vec中有vertex2，说明该边已存在，那么就不可以重复添加！
-    {   
-        return false;
+    else
+    {
+        for (auto v : Edges[vertex1])
+        {
+            if(v.GetDestination() == vertex2)
+                return false;
+        }
+        Edges[vertex1].push_back(e);
     }
-
-
-
-    Edges[vertex1].push_back(vertex2);//否则，就加边。
     return true;
 }
 
 bool Graph::RemoveEdge(int vertex1, int vertex2)
 {
-    std::vector<int>::iterator i1  = find(vertexs.begin(), vertexs.end(), vertex1);
-    std::vector<int>::iterator i2  = find(vertexs.begin(), vertexs.end(), vertex2);
-    if(i1 == vertexs.end() || i2 == vertexs.end())
+    if(vertexs.find(vertex1) == vertexs.end()) return false;
+    if(vertexs.find(vertex2) == vertexs.end()) return false;
+    Edge e(vertex1, vertex2);
+    if(Edges.find(vertex1) == Edges.end())
+    {
         return false;
-//    std::vector<int> vec = Edges[vertex1];//所有vertex1的邻居，也即后继节点。
-    std::vector<int>::iterator it = find(Edges[vertex1].begin(), Edges[vertex1].end(), vertex2);
-    if(it == Edges[vertex1].end()) //说明在vec中无vertex2，无法删除不存在的边
-        return false;
-    Edges[vertex1].erase(it);//否则，就删除该节点，也就删除了边。
-    return true;
-
+    }
+    else
+    {
+        for (auto it = Edges[vertex1].begin() ; it != Edges[vertex1].end() ; it++)
+            {
+                if(it->GetDestination() == vertex2)
+                    {
+                        Edges[vertex1].erase(it);
+                        return true;
+                    }
+            }
+    }
+    return false;
 }
 
 int Graph::CountVertices() const
@@ -76,143 +89,86 @@ int Graph::CountVertices() const
 }
 int Graph::CountEdges() const
 {
-    std::vector<int> vec = vertexs;
-    std::map<int, std::vector<int> > S = Edges;
     int cnt = 0;
-    for(std::vector<int>::iterator it = vec.begin() ; it != vec.end() ; it++)
-        {
-            cnt += S[*it].size();
-        }
+    for (auto it = vertexs.begin() ; it != vertexs.end() ; it++)
+            cnt += Edges.at(*it).size();
     return cnt;
 }
 bool Graph::ContainsVertex(int vertex) const
 {
-    std::vector<int> vec = vertexs;
-    std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex);//在vertex点列中查找vertex
-    if(it != vec.end())
+    if(vertexs.find(vertex) != vertexs.end())
         return true;
     else  
         return false;
 }
 bool Graph::ContainsEdge(int vertex1, int vertex2) const
 {
-    std::vector<int> v = vertexs;
-    std::vector<int>::iterator i1  = find(v.begin(), v.end(), vertex1);
-    std::vector<int>::iterator i2  = find(v.begin(), v.end(), vertex2);
-    if(i1 == v.end() || i2 == v.end())
-        return false;
-    std::map<int, std::vector<int> > S = Edges;
-    std::vector<int> vec = S[vertex1];
-    std::vector<int>::iterator it = find(vec.begin(), vec.end(), vertex2);//在vertex点列中查找vertex2
-    if(it != vec.end())
-        return true;
-    else 
-        return false;
+    if(vertexs.find(vertex1) == vertexs.end()) return false;
+    if(vertexs.find(vertex2) == vertexs.end()) return false;
+    for (auto it = Edges.at(vertex1).begin() ; it != Edges.at(vertex1).end() ; it++)
+        {
+            if(it->GetDestination() == vertex2)
+                return true;
+        }
+    return false;
 }
 std::vector<int> Graph::GetVertices() const
 {
-    return vertexs;
+    std::vector<int> t;
+    t.clear();
+    t.assign(vertexs.begin(), vertexs.end());
+    return t;
 }
 std::vector<Edge> Graph::GetEdges() const
 {
-    std::vector<int> vec = vertexs;
-    std::map<int, std::vector<int> > S = Edges;
-    std::vector<Edge> ans;
-    ans.clear();
-    for(std::vector<int>::iterator it = vec.begin() ; it != vec.end() ; it++) //这里遍历所有节点
-        {
-            for(std::vector<int>::iterator i = S[*it].begin() ; i != S[*it].end() ; i++) //这里遍历所有的边,*it->*i
-                {
-                    Edge t(*it, *i);
-                    ans.push_back(t);
-                }
-        }
-    return ans;
+    std::vector<Edge> t;
+    t.clear();
+    for (auto it = vertexs.begin() ; it != vertexs.end() ; it++)
+    {
+        t.insert(t.end(), Edges.at(*it).begin(), Edges.at(*it).end());
+    }
+    return t;
 }
 std::vector<Edge> Graph::GetIncomingEdges(int vertex) const
 {
-    std::vector<int> v = vertexs;
-    std::vector<int>::iterator i1  = find(v.begin(), v.end(), vertex);
-    if(i1 == v.end())
+    std::vector<Edge> vec;
+    vec.clear();
+    if(vertexs.find(vertex) == vertexs.end())
+        return vec;
+    for (auto it = Edges.begin() ; it != Edges.end() ; it++)
+    {
+        auto p = it->second;
+        for (auto i : p)
         {
-            std::vector<Edge> tmp;
-            tmp.clear();
-            return tmp;
+            if(i.GetDestination() == vertex)
+                vec.push_back(i);
         }
-
-    std::vector<int> vec = vertexs;
-    std::map<int, std::vector<int> > S = Edges;
-    std::vector<Edge> ans;
-    ans.clear();
-    for(std::vector<int>::iterator it = vec.begin() ; it != vec.end() ; it++) //这里遍历所有节点
-        {
-            for(std::vector<int>::iterator i = S[*it].begin() ; i != S[*it].end() ; i++) //这里遍历所有的边,*it->*i
-                {
-                    if(*i == vertex) //说明有一条边的终点为vertex
-                    {
-                       Edge t(*it, vertex);//*it->vertex
-                       ans.push_back(t);
-                    }
-                }
-        }
-    return ans;
+    }
+    return i;
 }
-  std::vector<Edge> Graph::GetOutgoingEdges(int vertex) const
-  {
-    std::vector<int> v = vertexs;
-    std::vector<int>::iterator i1  = find(v.begin(), v.end(), vertex);
-    if(i1 == v.end())
-        {
-            std::vector<Edge> tmp;
-            tmp.clear();
-            return tmp;
-        }
-    std::map<int, std::vector<int> > S = Edges;
-    std::vector<int> endlist = S[vertex];//vertex的所有终点
-    std::vector<Edge> ans;
-    ans.clear();
-    for(std::vector<int>::iterator it = endlist.begin() ; it != endlist.end() ; it++) //这里遍历所有节点
-        {
-            if(find(v.begin(), v.end(), *it) != v.end())
-            {
-                Edge t(vertex, *it);//vertex->*it
-                ans.push_back(t);
-            }
-        }
-    return ans;
-  }
-  int Graph::GetDegree(int vertex) const
-  {
-    std::vector<int> v = vertexs;
-    std::vector<int>::iterator i1  = find(v.begin(), v.end(), vertex);
-    if(i1 == v.end())
+std::vector<Edge> Graph::GetOutgoingEdges(int vertex) const
+{
+    std::vector<Edge> vec;
+    vec.clear();
+    if(vertexs.find(vertex) == vertexs.end()) 
+        return vec;
+    return Edges.at(vertex);
+}
+int Graph::GetDegree(int vertex) const
+{
+    if(vertexs.find(vertex) == vertexs.end())
         return 0;
-    int ans = 0;
-    std::map<int, std::vector<int> > S = Edges;
-    for (std::vector<int>::iterator it = S[vertex].begin() ; it != S[vertex].end() ; it++)
+    return Edges.at(vertex).size();
+}
+std::vector<int> Graph::GetNeighbors(int vertex) const
+{
+    std::vector<int> vec;
+    vec.clear();
+    if(vertexs.find(vertex) == vertexs.end())
+        return vec;
+    for (auto it = Edges.at(vertex).begin(); it != Edges.at(vertex).end() ; it++)
         {
-            if(find(v.begin(), v.end(), *it) != v.end())
-                ans++;
+            vec.push_back(it->GetDestination());
         }
-    return ans;
-  }
-  std::vector<int> Graph::GetNeighbors(int vertex) const
-  {
-    std::vector<int> v = vertexs;
-    std::vector<int>::iterator i1  = find(v.begin(), v.end(), vertex);
-    if(i1 == v.end()) // null index
-        {
-            std::vector<int> tmp;
-            tmp.clear();
-            return tmp;
-        }
-    std::map<int, std::vector<int> > S = Edges;
-    std::vector<int> ans;
-    ans.clear();
-    for (std::vector<int>::iterator it = S[vertex].begin() ; it != S[vertex].end() ; it++)
-        {
-            if(find(v.begin(), v.end(), *it) != v.end())
-                ans.push_back(*it);
-        }
-    return ans;
-  }
+    return vec;
+}
