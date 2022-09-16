@@ -17,7 +17,6 @@ class WeightedGraph : public Graph{
   ~WeightedGraph();
  public:
   bool AddEdge(int vertex1, int vertex2, int weight);
-  bool RemoveEdge(int vertex1, int vertex2, int weight);
  public:
   int GetWeight(int vertex1, int vertex2) const;
   std::vector<WeightedEdge> GetEdges() const;
