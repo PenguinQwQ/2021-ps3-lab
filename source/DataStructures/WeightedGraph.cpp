@@ -27,12 +27,16 @@ int WeightedGraph::GetWeight(int vertex1, int vertex2) const
 }
 std::vector<WeightedEdge> WeightedGraph::GetIncomingEdges(int vertex) const
 {
+
     auto e = Graph::GetIncomingEdges(vertex);
     std::vector<WeightedEdge> ans;
     ans.clear();
+    if(e.size() == 0)
+        return ans;
     for (auto it = e.begin() ; it != e.end() ; it++)
         {
-            ans.push_back(WeightedEdge((*it).GetSource(), (*it).GetDestination(), G.at(std::pair<int, int>((*it).GetSource(), (*it).GetDestination()))));
+            int x = it->GetSource(), y = it->GetDestination();
+            ans.push_back(WeightedEdge(x, y, G.at(std::pair<int, int>(x, y))));
         }
     return ans;
 }
@@ -43,20 +47,21 @@ std::vector<WeightedEdge> WeightedGraph::GetOutgoingEdges(int vertex) const
     ans.clear();
     for (auto it = vec.begin() ; it != vec.end() ; it++)
         {
-             ans.push_back(WeightedEdge((*it).GetSource(), (*it).GetDestination(), G.at(std::pair<int, int>((*it).GetSource(), (*it).GetDestination()))));
+            int x = it->GetSource(), y = it->GetDestination();
+            ans.push_back(WeightedEdge(x, y, G.at(std::pair<int, int>(x, y))));
         }
     return ans;
 }
 
 std::vector<WeightedEdge> WeightedGraph::GetEdges() const
 {
-    auto vec = GetVertices();
+    auto vec = Graph::GetEdges();
     std::vector<WeightedEdge> ans;
     ans.clear();
     for (auto it = vec.begin() ; it != vec.end() ; it++)
         {
-            auto e = GetOutgoingEdges(*it);
-            ans.insert(ans.end(), e.begin(), e.end());
+            int x = it->GetSource(), y = it->GetDestination();
+            ans.push_back(WeightedEdge(x, y, G.at(std::pair<int, int>(x, y))));
         }
     return ans;
 }
