@@ -35,7 +35,7 @@ assert(g.RemoveEdge(1,1) == false);
 assert(g.AddEdge(1, 1, 2) == true);
 
 assert(g.CountVertices() == 4);
-assert(g.CountEdges() == 4);
+assert(g.CountEdges() == 3);
 assert(g.ContainsVertex(5) == false);
 assert(g.ContainsVertex(1) == true);
    
