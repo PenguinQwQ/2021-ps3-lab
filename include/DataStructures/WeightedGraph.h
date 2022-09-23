@@ -12,11 +12,12 @@ std::pair<T, U> operator < (const std::pair<T, U>& x, const std::pair<T, U>& y)
 }
 
 class WeightedGraph : public Graph{
+ friend class UndirectedWeightedGraph; 
  public:
   WeightedGraph();
   ~WeightedGraph();
  public:
-  bool AddEdge(int vertex1, int vertex2, int weight);
+  virtual bool AddEdge(int vertex1, int vertex2, int weight);
  public:
   int GetWeight(int vertex1, int vertex2) const;
   std::vector<WeightedEdge> GetEdges() const;
