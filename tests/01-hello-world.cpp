@@ -44,8 +44,8 @@ assert(g.ContainsEdge(1,2) == true);
 assert(g.ContainsEdge(2,1) == true);
 assert(g.ContainsEdge(3,1) == true);
 
-assert(g.GetEdges().size() == 4);
-assert(g.GetDegree(1) == 3);
+assert(g.GetEdges().size() == 3);
+assert(g.GetDegree(1) == 4);
 assert(g.GetNeighbors(1).size() == 3);
 
 
