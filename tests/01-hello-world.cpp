@@ -36,6 +36,13 @@ assert(g.AddEdge(1, 1) == true);
 
 assert(g.CountVertices() == 4);
 printf("%d\n", g.CountEdges());
+std::vector<Edge> test = g.GetEdges();
+for(std::vector<Edge>::iterator it = test.begin() ; it != test.end() ; it++)
+    {
+        printf("(%d,%d)\n", (*it).GetSource(), (*it).GetDestination());
+    }
+
+
 assert(g.CountEdges() == 4);
 assert(g.ContainsVertex(5) == false);
 assert(g.ContainsVertex(1) == true);
