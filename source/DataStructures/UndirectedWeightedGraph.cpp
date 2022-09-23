@@ -19,20 +19,17 @@ bool UndirectedWeightedGraph::AddEdge(int vertex1, int vertex2, int weight)
         return false;
     if(ContainsVertex(vertex2) == false)
         return false;
+    if(ContainsEdge(vertex1, vertex2) == true)
+        return false;
     //Second solve the selfring situation
     if(vertex1 == vertex2)
     {
-        if(ContainsEdge(vertex1, vertex2))
-            return false;
-        else 
-            {
-                WeightedGraph::AddEdge(vertex1, vertex2, weight);
-                selfring.push_back(vertex1);
-                return true;
-            }
+        WeightedGraph::AddEdge(vertex1, vertex2, weight);
+        selfring.push_back(vertex1);
+        return true;
     }
     //Third solve the remaining situation
-    return WeightedGraph::AddEdge(vertex1, vertex2, weight) && WeightedGraph::AddEdge(vertex1, vertex2, weight);
+    return WeightedGraph::AddEdge(vertex1, vertex2, weight) && WeightedGraph::AddEdge(vertex2, vertex1, weight);
 }
 bool UndirectedWeightedGraph::RemoveEdge(int vertex1,int vertex2)
 {
