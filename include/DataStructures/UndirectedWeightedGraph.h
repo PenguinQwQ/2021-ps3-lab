@@ -34,17 +34,17 @@ template <class T1, class T2>
 bool UndirectedWeightedGraph<T1,T2>::AddEdge(int vertex1, int vertex2, T2 weight)
 {
     //First check the vertexs are in the graph
-    if(ContainsVertex(vertex1) == false)
+    if(WeightedGraph<T2>::ContainsVertex(vertex1) == false)
         return false;
-    if(ContainsVertex(vertex2) == false)
+    if(WeightedGraph<T2>::ContainsVertex(vertex2) == false)
         return false;
-    if(ContainsEdge(vertex1, vertex2) == true)
+    if(WeightedGraph<T2>::ContainsEdge(vertex1, vertex2) == true)
         return false;
     //Second solve the selfring situation
     if(vertex1 == vertex2)
     {
         WeightedGraph<T2>::AddEdge(vertex1, vertex2, weight);
-        selfring.push_back(vertex1);
+        UndirectedWeightedGraph<T1,T2>::selfring.push_back(vertex1);
         return true;
     }
     //Third solve the remaining situation
@@ -54,13 +54,13 @@ template <class T1, class T2>
 bool UndirectedWeightedGraph<T1, T2>::RemoveEdge(int vertex1, int vertex2)
 {
     //First, check the vertexs exists and the Edge exists
-    if(ContainsEdge(vertex1, vertex2) == false)
+    if(WeightedGraph<T2>::ContainsEdge(vertex1, vertex2) == false)
         return false;
     //Second check the selfring
     if(vertex1 == vertex2)
     {
         WeightedGraph<T2>::RemoveEdge(vertex1, vertex2);
-        selfring.erase(find(selfring.begin(), selfring.end(), vertex1));
+        this->selfring.erase(UndirectedWeightedGraph<T1, T2>::find(this->selfring.begin(), this->selfring.end(), vertex1));
         return true;
     }
     //Third remove the remaining contents
@@ -91,10 +91,10 @@ std::vector<WeightedEdge<T2>> UndirectedWeightedGraph<T1,T2>::GetEdges() const
 template <class T1, class T2>
 int UndirectedWeightedGraph<T1, T2>::GetDegree(int vertex) const
 {
-    if(ContainsVertex(vertex) == false)
+    if(WeightedGraph<T2>::ContainsVertex(vertex) == false)
         return 0;
     int cnt = WeightedGraph<T2>::GetDegree(vertex);
-    if(find(selfring.begin(), selfring.end(), vertex) != selfring.end())
+    if(UndirectedWeightedGraph<T1, T2>::find(this->selfring.begin(), this->selfring.end(), vertex) != this->selfring.end())
         cnt++;
     return cnt;
 }
