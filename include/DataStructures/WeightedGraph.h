@@ -13,7 +13,6 @@ std::pair<T, U> operator < (const std::pair<T, U>& x, const std::pair<T, U>& y)
 
 template <class T2>
 class WeightedGraph : public Graph{
- friend class UndirectedWeightedGraph; 
  public:
   WeightedGraph();
   ~WeightedGraph();
