@@ -60,7 +60,7 @@ bool UndirectedWeightedGraph<T1, T2>::RemoveEdge(int vertex1, int vertex2)
     if(vertex1 == vertex2)
     {
         WeightedGraph<T2>::RemoveEdge(vertex1, vertex2);
-        selfring.erase(vector<int>::find(selfring.begin(), selfring.end(), vertex1));
+        selfring.erase(find(selfring.begin(), selfring.end(), vertex1));
         return true;
     }
     //Third remove the remaining contents
@@ -77,13 +77,13 @@ std::vector<WeightedEdge<T2>> UndirectedWeightedGraph<T1,T2>::GetEdges() const
 {
     std::vector<WeightedEdge<T2>> t;//ans set
     t.clear();
-    for (auto it = vertexs.begin() ; it != vertexs.end() ; it++)
+    for (auto it = Graph::vertexs.begin() ; it != Graph::vertexs.end() ; it++)
     {
-        for (auto i = Edges.at(*it).begin() ; i != Edges.at(*it).end() ; i++)
+        for (auto i = Graph::Edges.at(*it).begin() ; i != Graph::Edges.at(*it).end() ; i++)
             {
                 int u = i->GetSource(), v = i->GetDestination(), w = G.at(std::pair(u, v));
                 if(u <= v)
-                    t.push_back(WeightedEdge(u, v, w));
+                    t.push_back(WeightedEdge<T2>(u, v, w));
             }
     }
     return t;
