@@ -4,6 +4,7 @@
 #include <DataStructures/Graph.h>
 #include <DataStructures/Edge.h>
 #include <DataStructures/WeightedGraph.h>
+#include <algorithm>
 #include <utility>
 #include <vector>
 template <class T2>
