@@ -5,8 +5,7 @@
 #include <DataStructures/Edge.h>
 #include <DataStructures/WeightedGraph.h>
 #include <utility>
-
-
+#include <vector>
 template <class T1, class T2>
 class UndirectedWeightedGraph : public WeightedGraph<T2> {
     public:
