@@ -61,7 +61,14 @@ bool UndirectedWeightedGraph<T2>::RemoveEdge(int vertex1, int vertex2)
     if(vertex1 == vertex2)
     {
         WeightedGraph<T2>::RemoveEdge(vertex1, vertex2);
-        this->selfring.erase(algorithm::find(this->selfring.begin(), this->selfring.end(), vertex1));
+        for (auto it = selfring.begin() ; it != selfring.end() ; it++)
+        {
+            if((*it) == vertex1)
+            {
+                this->selfring.erase(it);
+                break;    
+            }
+        }
         return true;
     }
     //Third remove the remaining contents
