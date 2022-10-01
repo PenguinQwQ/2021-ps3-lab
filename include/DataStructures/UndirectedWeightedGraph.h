@@ -102,8 +102,16 @@ int UndirectedWeightedGraph<T2>::GetDegree(int vertex) const
     if(WeightedGraph<T2>::ContainsVertex(vertex) == false)
         return 0;
     int cnt = WeightedGraph<T2>::GetDegree(vertex);
-    if(UndirectedWeightedGraph<T2>::find(this->selfring.begin(), this->selfring.end(), vertex) != this->selfring.end())
-        cnt++;
+
+ //   if(UndirectedWeightedGraph<T2>::find(this->selfring.begin(), this->selfring.end(), vertex) != this->selfring.end())
+    for (auto it = selfring.begin() ; it != selfring.end() ; it++)
+    {
+        if((*it) == vertex)
+        {
+            cnt++;
+            break;    
+        }
+    }
     return cnt;
 }
 
