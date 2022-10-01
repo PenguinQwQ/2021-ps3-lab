@@ -49,10 +49,10 @@ bool UndirectedWeightedGraph<T1,T2>::AddEdge(int vertex1, int vertex2, T2 weight
         return true;
     }
     //Third solve the remaining situation
-    return WeightedGraph::AddEdge(vertex1, vertex2, weight) && WeightedGraph::AddEdge(vertex2, vertex1, weight);
+    return WeightedGraph<T2>::AddEdge(vertex1, vertex2, weight) && WeightedGraph<T2>::AddEdge(vertex2, vertex1, weight);
 }
 template <class T1, class T2>
-bool UndirectedWeightedGraph<T1, T2>::RemoveEdge(int vertex1,int vertex2)
+bool UndirectedWeightedGraph<T1, T2>::RemoveEdge(int vertex1, int vertex2)
 {
     //First, check the vertexs exists and the Edge exists
     if(ContainsEdge(vertex1, vertex2) == false)
@@ -61,7 +61,7 @@ bool UndirectedWeightedGraph<T1, T2>::RemoveEdge(int vertex1,int vertex2)
     if(vertex1 == vertex2)
     {
         WeightedGraph<T2>::RemoveEdge(vertex1, vertex2);
-        selfring.erase(find(selfring.begin(), selfring.end(), vertex1));
+        selfring.erase(selfring.find(selfring.begin(), selfring.end(), vertex1));
         return true;
     }
     //Third remove the remaining contents
