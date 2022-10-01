@@ -44,7 +44,7 @@ bool UndirectedWeightedGraph<T2>::AddEdge(int vertex1, int vertex2, T2 weight)
     if(vertex1 == vertex2)
     {
         WeightedGraph<T2>::AddEdge(vertex1, vertex2, weight);
-        UndirectedWeightedGraph<T2>::selfring.push_back(vertex1);
+        selfring.push_back(vertex1);
         return true;
     }
     //Third solve the remaining situation
@@ -60,7 +60,7 @@ bool UndirectedWeightedGraph<T2>::RemoveEdge(int vertex1, int vertex2)
     if(vertex1 == vertex2)
     {
         WeightedGraph<T2>::RemoveEdge(vertex1, vertex2);
-        this->selfring.erase(UndirectedWeightedGraph<T2>::find(this->selfring.begin(), this->selfring.end(), vertex1));
+        this->selfring.erase(find(this->selfring.begin(), this->selfring.end(), vertex1));
         return true;
     }
     //Third remove the remaining contents
