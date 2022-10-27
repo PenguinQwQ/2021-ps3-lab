@@ -27,7 +27,6 @@ g->AddEdge(1, 2);
 g->AddEdge(2, 3);
 g->AddEdge(3, 4);
 g->AddEdge(4, 1);
-g->AddEdge(1, 2);
 g->AddEdge(5, 6);
 g->AddEdge(6, 5);
 
@@ -38,8 +37,15 @@ printf("\n");
 BreadthFirstSearcher<Graph>::VisitAllVertices(g, 5, [](int u) -> void{
     printf("%d ", u);
 });
+
+printf("\n");
+DepthFirstSearcher<Graph>::VisitAllVertices(g, 1, [](int u) -> void{
+    printf("%d ", u);
+});
+printf("\n");
+DepthFirstSearcher<Graph>::VisitAllVertices(g, 5, [](int u) -> void{
+    printf("%d ", u);
+});
 delete g;
-
-
     return 0;
 }
