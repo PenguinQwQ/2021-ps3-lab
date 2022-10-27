@@ -41,6 +41,9 @@ std::optional<int> BreadthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *g
 {
   std::set<int> vis;
   std::queue<int> q;
+
+  if(graph->ContainsVertex(start) == false)
+      return std::nullopt;
   q.push(start);
   vis.emplace(start);
   while(!q.empty())
@@ -48,7 +51,7 @@ std::optional<int> BreadthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *g
     int cur = q.front();
     if(predicate(cur) == true) return cur;
     q.pop();
-    for (int u : graph->GetNeighbors(cur))
+    for (int u : graph -> GetNeighbors(cur))
     {
       if(vis.find(u) == vis.end()) 
       { 

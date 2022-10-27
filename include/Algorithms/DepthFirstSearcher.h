@@ -42,6 +42,8 @@ std::optional<int> DepthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *gra
 {
   std::set<int> vis;
   std::stack<int> stk;
+  if(graph->ContainsVertex(start) == false)
+      return std::nullopt;
   stk.push(start);
   vis.emplace(start);
   while(!stk.empty())
