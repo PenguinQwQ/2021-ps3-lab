@@ -24,7 +24,7 @@ static void VisitAllVertices(const TGraph *graph, int start, std::function<void(
     action(cur);
     q.pop();
     vis.emplace(cur);
-    for (int u : g->GetNeighbors(cur))
+    for (int u : graph->GetNeighbors(cur))
     {
       if(!vis.contains(u)) q.emplace(u);
     }
@@ -42,7 +42,7 @@ static std::optional<int> FindFirstVertex(const TGraph *graph, int start, std::f
     if(predicate(cur) == true) return cur;
     q.pop();
     vis.emplace(cur);
-    for (int u : g->GetNeighbors(cur))
+    for (int u : graph->GetNeighbors(cur))
     {
       if(!vis.contains(u)) q.emplace(u);
     }
