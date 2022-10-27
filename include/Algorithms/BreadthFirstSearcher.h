@@ -3,6 +3,8 @@
 
 #include <functional>
 #include <optional>
+#include <queue>
+#include <set>
 
 template <typename TGraph>
 class BreadthFirstSearcher {
