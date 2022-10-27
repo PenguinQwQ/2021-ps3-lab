@@ -32,10 +32,11 @@ g->AddEdge(5, 6);
 g->AddEdge(6, 5);
 
 BreadthFirstSearcher<Graph>::VisitAllVertices(g, 1, [](int u) -> void{
-    printf("%d", u);
+    printf("%d ", u);
 });
+printf("\n");
 BreadthFirstSearcher<Graph>::VisitAllVertices(g, 5, [](int u) -> void{
-    printf("%d", u);
+    printf("%d ", u);
 });
 delete g;
 
