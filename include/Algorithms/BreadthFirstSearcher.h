@@ -19,15 +19,19 @@ void BreadthFirstSearcher<TGraph>::VisitAllVertices(const TGraph *graph, int sta
   std::set<int> vis;
   std::queue<int> q;
   q.push(start);
+  vis.emplace(start);
   while(!q.empty())
   {
     int cur = q.front();
     action(cur);
     q.pop();
-    vis.emplace(cur);
     for (int u : graph->GetNeighbors(cur))
     {
-      if(vis.find(u) == vis.end()) q.emplace(u);
+      if(vis.find(u) == vis.end()) 
+      {
+        q.emplace(u);
+        vis.emplace(u);
+      }
     }
   }
 }
@@ -38,15 +42,19 @@ std::optional<int> BreadthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *g
   std::set<int> vis;
   std::queue<int> q;
   q.push(start);
+  vis.emplace(start);
   while(!q.empty())
   {
     int cur = q.front();
     if(predicate(cur) == true) return cur;
     q.pop();
-    vis.emplace(cur);
     for (int u : graph->GetNeighbors(cur))
     {
-      if(vis.find(u) == vis.end()) q.emplace(u);
+      if(vis.find(u) == vis.end()) 
+      { 
+        q.emplace(u);
+        vis.emplace(u);
+      }
     }
   } 
   return std::nullopt;
