@@ -20,15 +20,19 @@ void DepthFirstSearcher<TGraph>::VisitAllVertices(const TGraph *graph, int start
 std::set<int> vis;
 std::stack<int> stk;
 stk.push(start);
+vis.emplace(start);
 while(!stk.empty())
 {
   int u = stk.top();
   stk.pop();
   action(u);
-  vis.emplace(u);
   for (int v : graph->GetNeighbors(u))
   {
-    if(vis.find(v) == vis.end()) stk.push(v);
+    if(vis.find(v) == vis.end()) 
+    {
+      vis.emplace(v);
+      stk.push(v);
+    }
   }
 }
 }
@@ -39,15 +43,18 @@ std::optional<int> DepthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *gra
   std::set<int> vis;
   std::stack<int> stk;
   stk.push(start);
+  vis.emplace(start);
   while(!stk.empty())
   {
     int u = stk.top();
     stk.pop();
     if(predicate(u)) return u;
-    vis.emplace(u);
     for (int v : graph->GetNeighbors(u)){
       if(vis.find(v) == vis.end())
+      {
           stk.push(v);
+          vis.emplace(v);
+      }
     }
   }
   return std::nullopt;
