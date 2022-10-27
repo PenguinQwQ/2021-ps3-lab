@@ -18,6 +18,9 @@ void BreadthFirstSearcher<TGraph>::VisitAllVertices(const TGraph *graph, int sta
 {
   std::set<int> vis;
   std::queue<int> q;
+  if(graph->ContainsVertex(start) == false)
+    return;
+
   q.push(start);
   vis.emplace(start);
   while(!q.empty())

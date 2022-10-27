@@ -19,6 +19,9 @@ void DepthFirstSearcher<TGraph>::VisitAllVertices(const TGraph *graph, int start
 //Here we store the traveled points by stack!
 std::set<int> vis;
 std::stack<int> stk;
+  if(graph->ContainsVertex(start) == false)
+    return;
+
 stk.push(start);
 vis.emplace(start);
 while(!stk.empty())
