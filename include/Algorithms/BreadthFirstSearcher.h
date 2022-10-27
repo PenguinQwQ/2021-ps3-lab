@@ -14,7 +14,7 @@ class BreadthFirstSearcher {
 };
 
 template <typename TGraph>
-static void VisitAllVertices(const TGraph *graph, int start, std::function<void(int)> action)
+void BreadthFirstSearcher<TGraph>::VisitAllVertices(const TGraph *graph, int start, std::function<void(int)> action)
 {
   std::set<int> vis;
   std::queue<int> q{start};
@@ -32,7 +32,7 @@ static void VisitAllVertices(const TGraph *graph, int start, std::function<void(
 }
 
 template <typename TGraph>
-static std::optional<int> FindFirstVertex(const TGraph *graph, int start, std::function<bool(int)> predicate)
+std::optional<int> BreadthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *graph, int start, std::function<bool(int)> predicate)
 {
   std::set<int> vis;
   std::queue<int> q{start};
