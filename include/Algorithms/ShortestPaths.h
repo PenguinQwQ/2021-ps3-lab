@@ -18,6 +18,7 @@ class ShortestPaths {
  public:
   bool vis[N];//reachable point set 
   int prev[N]; 
+  TValue INF;
   TValue d[N];//this is the array of dis!
   std::priority_queue <std::pair<TValue, int>, std::vector<std::pair<TValue, int>> , std::greater<std::pair<TValue, int>> > pq;
 };

@@ -16,9 +16,15 @@ class DijkstraShortestPaths : public ShortestPaths<TGraph, TValue>{
 template <template<typename> class TGraph, typename TValue>
 DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue> *graph, int source)
 {
+    this->INF = TValue();
+    for (auto it : graph->GetEdges())
+    {
+        this->INF = this->INF + it.GetWeight();
+    }
+
     for (auto it : graph->GetVertices())
     {
-        this->d[it] = TValue(15000); 
+        this->d[it] = INF;
         this->vis[it] = false;
         this->prev[it] = 0;
     }
