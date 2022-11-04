@@ -24,7 +24,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
 
     for (auto it : graph->GetVertices())
     {
-        this->d[it] = INF;
+        this->d[it] = this->INF;
         this->vis[it] = false;
         this->prev[it] = 0;
     }
