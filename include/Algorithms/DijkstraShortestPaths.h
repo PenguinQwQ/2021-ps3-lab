@@ -1,7 +1,5 @@
 #ifndef DIJKSTRA_SHORTEST_PATHS
 #define DIJKSTRA_SHORTEST_PATHS
-
-#define mp make_pair
 #include <vector>
 #include <optional>
 #include <utility>
@@ -23,7 +21,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         this->prev[it] = 0;
     }
     this->d[source] = TValue();
-    this->pq.push(mp(d[source], source));
+    this->pq.push(make_pair(this->d[source], source));
     while (this->pq.size() > 0)
     {
         int u = this->pq.top().second;
@@ -37,7 +35,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
             if(this->d[v] > dis + w)
             {
                 this->d[v] = dis + w;
-                this->pq.push(mp(this->d[v], v));
+                this->pq.push(make_pair(this->d[v], v));
                 this->prev[v] = u;
             }
         }
