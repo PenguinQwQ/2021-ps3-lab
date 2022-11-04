@@ -18,25 +18,20 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
 
 {
     this->INF = TValue();
-    std::cout << "Tag One" << std::endl;
     for (auto it : graph->GetEdges())
     {
         this->INF = this->INF + it.GetWeight();
     }
-    std::cout << "Tag Two" << std::endl;
     for (auto it : graph->GetVertices())
     {
         this->d[it] = this->INF;
         this->vis[it] = false;
         this->prev[it] = 0;
     }
-    std::cout << "Tag Three" << std::endl;
     this->d[source] = TValue();
     this->pq.push(std::make_pair(this->d[source], source));
-    std::cout << "Tag Four" << std::endl;
     while (this->pq.size() > 0)
     {
-        std::cout << "Tag Five" << std::endl;
         int u = this->pq.top().second;
         TValue dis = this->pq.top().first;
         this->pq.pop();
@@ -54,11 +49,5 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
             }
         }
     }
-
-    for (auto it : graph->GetVertices())
-    {
-        std::cout << this->d[it] << std::endl;
-    }
-
 }
 #endif
