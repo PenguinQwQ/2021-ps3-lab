@@ -69,6 +69,7 @@ delete g;
     p = new DijkstraShortestPaths<WeightedGraph, int>(g, i);
     for (int j = 1; j <= 6; ++j) {
       printf("%d", p->HasPathTo(j));
+      printf("Here!!\n");
     }
     printf("\n");
     delete p;
