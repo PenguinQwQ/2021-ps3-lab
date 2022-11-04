@@ -52,7 +52,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
 
     for (auto it : graph->GetVertices())
     {
-        cout << this->d[it] << endl;
+        std::cout << this->d[it] << std::endl;
     }
 
 }
