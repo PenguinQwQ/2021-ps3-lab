@@ -19,7 +19,7 @@ class ShortestPaths {
   bool vis[N];//reachable point set
   int prev[N];
   TValue d[N];//this is the array of dis!
-  priority_queue <pair<TValue, int>, vector<pair<TValue, int>> , greater<pair<TValue, int>> > pq;
+  std::priority_queue <pair<TValue, int>, vector<pair<TValue, int>> , greater<pair<TValue, int>> > pq;
 };
 template <template<typename> class TGraph, typename TValue>
 std::optional<TValue> ShortestPaths<TGraph, TValue>::TryGetDistanceTo(int destination) const
