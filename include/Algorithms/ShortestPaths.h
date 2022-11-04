@@ -36,7 +36,7 @@ bool ShortestPaths<TGraph, TValue>::HasPathTo (int destination) const
 }
 
 template <template<typename> class TGraph, typename TValue>
-std::optional<std::vector<int>> TryGetShortestPathTo(int destination)
+std::optional<std::vector<int>> ShortestPaths<TGraph, TValue>::TryGetShortestPathTo(int destination) const
 {
     std::vector<int> path;
     path.clear();
