@@ -66,7 +66,7 @@ delete g;
 
   printf("Here!!!");
   
-  ShortestPaths<WeightedGraph, int> *p = nullptr;
+  DijkstraShortestPaths<WeightedGraph, int> *p = nullptr;
   
   for (int i = 1; i <= 6; ++i) {
     p = new DijkstraShortestPaths<WeightedGraph, int>(g, i);
