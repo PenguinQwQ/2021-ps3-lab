@@ -75,10 +75,10 @@ delete g;
       printf("Here!!\n");
     }
     printf("\n");
-    delete p;
+//    delete p;
   }
 
-  delete g;
+//  delete g;
 
     return 0;
 }
