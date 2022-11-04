@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <optional>
+#include <queue>
 const int N = 20000;
 template <template<typename> class TGraph, typename TValue>
 class ShortestPaths {

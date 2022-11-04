@@ -4,6 +4,8 @@
 #define mp make_pair
 #include <vector>
 #include <optional>
+#include <pair>
+#include <utility>
 #include <Algorithms/ShortestPaths.h>
 
 
@@ -11,7 +13,7 @@ template <template<typename> class TGraph, typename TValue>
 class DijkstraShortestPaths : public ShortestPaths<TGraph, TValue>{
  public:
   DijkstraShortestPaths(const TGraph<TValue> *graph, int source);
-  virtual ~ShortestPaths(){};
+  override ~ShortestPaths(){};
 };
 template <template<typename> class TGraph, typename TValue>
 DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue> *graph, int source)
