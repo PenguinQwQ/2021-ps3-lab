@@ -18,9 +18,9 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
 {
     for (auto it : graph->GetVertices())
     {
-        ShortestPaths::d[*it] = TValue(15000000); 
-        ShortestPaths::vis[*it] = false;
-        ShortestPaths::prev[*it] = 0;
+        this->d[*it] = TValue(15000000); 
+        this->vis[*it] = false;
+        this->prev[*it] = 0;
     }
     d[source] = TValue();
     pq.push(mp(d[source], source));
