@@ -8,7 +8,7 @@ const int N = 20000;
 template <template<typename> class TGraph, typename TValue>
 class ShortestPaths {
  public:
-  ShortestPaths();
+  ShortestPaths(){};
   ShortestPaths(const TGraph<TValue> *graph, int source);
   ~ShortestPaths(){};
  public:
