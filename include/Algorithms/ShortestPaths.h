@@ -10,7 +10,7 @@ class ShortestPaths {
  public:
   ShortestPaths();
   ShortestPaths(const TGraph<TValue> *graph, int source);
-  virtual ~ShortestPaths();
+  ~ShortestPaths(){};
  public:
   bool HasPathTo(int destination) const;
   std::optional<TValue> TryGetDistanceTo(int destination) const;
