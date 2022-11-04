@@ -19,7 +19,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
 {
     this->INF = TValue();
     auto vec1 = graph->GetEdges();
-    auto vec2 = graph->GetVerticess();
+    auto vec2 = graph->GetVertices();
     for (auto it : vec1)
     {
         this->INF = this->INF + it.GetWeight();
