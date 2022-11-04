@@ -65,6 +65,7 @@ delete g;
   g->AddEdge(6, 5, 6);
 
   printf("Here!!!");
+  /*
   ShortestPaths<WeightedGraph, int> *p = nullptr;
   for (int i = 1; i <= 6; ++i) {
     p = new DijkstraShortestPaths<WeightedGraph, int>(g, i);
@@ -78,6 +79,6 @@ delete g;
 
   delete g;
 
-
+*/
     return 0;
 }
