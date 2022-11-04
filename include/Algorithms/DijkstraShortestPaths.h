@@ -18,11 +18,11 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
 
 {
     this->INF = TValue();
-    for (const auto& it : graph->GetEdges())
+    for (const auto &it : graph->GetEdges())
     {
         this->INF = this->INF + it.GetWeight();
     }
-    for (const auto& it : graph->GetVertices())
+    for (const auto &it : graph->GetVertices())
     {
         this->d[it] = this->INF;
         this->vis[it] = false;
@@ -37,7 +37,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         this->pq.pop();
         if(this->vis[u]) continue;
         this->vis[u] = true;
-        for (const auto& it : graph->GetOutgoingEdges(u))
+        for (const auto &it : graph->GetOutgoingEdges(u))
         {
             TValue w = it.GetWeight();
             int v = it.GetDestination();
