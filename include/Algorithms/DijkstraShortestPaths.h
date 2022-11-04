@@ -22,23 +22,23 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         this->vis[it] = false;
         this->prev[it] = 0;
     }
-    d[source] = TValue();
-    pq.push(mp(d[source], source));
-    while (pq.size() > 0)
+    this->d[source] = TValue();
+    this->pq.push(mp(d[source], source));
+    while (this->pq.size() > 0)
     {
-        int u = pq.top().second;
-        TValue dis = pq.top().first;
-        if(vis[u]) continue;
-        vis[u] = true;
+        int u = this->pq.top().second;
+        TValue dis = this->pq.top().first;
+        if(this->vis[u]) continue;
+        this->vis[u] = true;
         for (auto it : graph->GetOutgoingEdges(u))
         {
-            TValue w = it->GetWeight();
-            int v = it->GetDestination();
-            if(d[v] > dis + w)
+            TValue w = it.GetWeight();
+            int v = it.GetDestination();
+            if(this->d[v] > dis + w)
             {
-                d[v] = dis + w;
-                pq.push(mp(d[v], v));
-                prev[v] = u;
+                this->d[v] = dis + w;
+                this->pq.push(mp(this->d[v], v));
+                this->prev[v] = u;
             }
         }
     }
