@@ -39,7 +39,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         std::cout << "Tag Five" << std::endl;
         int u = this->pq.top().second;
         TValue dis = this->pq.top().first;
-        pq.pop();
+        this->pq.pop();
         if(this->vis[u]) continue;
         this->vis[u] = true;
         for (auto it : graph->GetOutgoingEdges(u))
