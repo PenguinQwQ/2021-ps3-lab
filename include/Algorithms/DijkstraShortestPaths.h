@@ -17,13 +17,8 @@ template <template<typename> class TGraph, typename TValue>
 DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue> *graph, int source)
 
 {
-    this->INF = TValue();
-    auto vec1 = graph->GetEdges();
+    this->INF = (TValue)200000;
     auto vec2 = graph->GetVertices();
-    for (auto it : vec1)
-    {
-        this->INF = this->INF + it.GetWeight();
-    }
     for (auto it : vec2)
     {
         this->d[it] = this->INF;
