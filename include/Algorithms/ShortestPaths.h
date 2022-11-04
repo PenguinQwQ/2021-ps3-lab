@@ -9,7 +9,7 @@ template <template<typename> class TGraph, typename TValue>
 class ShortestPaths {
  public:
   ShortestPaths(){};
-  ShortestPaths(const TGraph<TValue> *graph, int source);
+  ShortestPaths(const TGraph<TValue> *graph, int source){};
   ~ShortestPaths(){};
  public:
   bool HasPathTo(int destination) const;
