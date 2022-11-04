@@ -2,7 +2,7 @@
 #define EDGE_H
 
 class Edge {
-  public:
+  public: 
    Edge(int source, int destination);
    ~Edge();
   public:

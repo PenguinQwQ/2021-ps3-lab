@@ -12,7 +12,7 @@ class Graph {
  public:
   Graph();
   ~Graph();
- public:
+ public: 
   bool AddVertex(int vertex);
   bool RemoveVertex(int vertex);
   virtual bool AddEdge(int vertex1, int vertex2);

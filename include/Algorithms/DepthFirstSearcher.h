@@ -41,7 +41,7 @@ while(!stk.empty())
 }
 
 template <typename TGraph>
-std::optional<int> DepthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *graph, int start, std::function<bool(int)> predicate)
+std::optional<int> DepthFirstSearcher<TGraph>::TryFindFirstVertex(const TGraph *graph, int start, std::function<bool(int)> predicate)
 {
   std::set<int> vis;
   std::stack<int> stk;

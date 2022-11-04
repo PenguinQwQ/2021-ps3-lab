@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <optional>
-
+const int N = 20000;
 template <template<typename> class TGraph, typename TValue>
 class ShortestPaths {
  public:
@@ -14,6 +14,40 @@ class ShortestPaths {
   bool HasPathTo(int destination) const;
   std::optional<TValue> TryGetDistanceTo(int destination) const;
   std::optional<std::vector<int>> TryGetShortestPathTo(int destination) const;
+ public:
+  bool vis[N];//reachable point set
+  int prev[N];
+  TValue d[N];//this is the array of dis!
+  priority_queue <pair<TValue, int>, vector<pair<TValue, int>> , greater<pair<TValue, int>> > pq;
 };
+template <template<typename> class TGraph, typename TValue>
+std::optional<TValue> ShortestPaths<TGraph, TValue>::TryGetDistanceTo(int destination) const
+{
+  if(vis[destination]) return d[destination];
+  else return std::nullopt;
+}
+
+template <template<typename> class TGraph, typename TValue>
+bool ShortestPaths<TGraph, TValue>::HasPathTo (int destination) const
+{
+  if(vis[destination]) return true;
+  else return false;
+}
+
+template <template<typename> class TGraph, typename TValue>
+std::optional<std::vector<int>> TryGetShortestPathTo(int destination)
+{
+    std::vector<int> path;
+    path.clear();
+    if(vis[destination] == false) return std::nullopt;
+    int index = destination;
+    path.push_back(destination);
+    while(prev[index] != 0)
+    {
+      path.push_back(prev[index]);
+      index = prev[index];
+    }
+    return path;
+}
 
 #endif
