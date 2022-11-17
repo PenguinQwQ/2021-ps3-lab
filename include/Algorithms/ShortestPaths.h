@@ -25,7 +25,7 @@ class ShortestPaths {
 
 
 template <typename TGraph>
-std::optional<typename TGraph::value_type> ShortestPaths<TGraph, typename TGraph::value_type>::TryGetDistanceTo(int destination) const
+std::optional<typename TGraph::value_type> ShortestPaths<TGraph>::TryGetDistanceTo(int destination) const
 {
   if(vis[destination]) return d[destination];
   else return std::nullopt;
