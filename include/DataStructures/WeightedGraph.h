@@ -13,6 +13,9 @@ std::pair<T, U> operator < (const std::pair<T, U>& x, const std::pair<T, U>& y)
 
 template <class T2>
 class WeightedGraph : public Graph{
+
+ typedef T2 value_type;
+
  public:
   WeightedGraph();
   ~WeightedGraph();
@@ -27,6 +30,9 @@ class WeightedGraph : public Graph{
    std::map<std::pair<int, int>, T2> G;
 
 };
+
+
+
 
 template <class T2>
 WeightedGraph<T2>::WeightedGraph():Graph()
