@@ -83,5 +83,9 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
         }
     }
+
+    for (auto p : vertices)
+        printf("d[%d]=%d\n", p, d[p]);
+
 }
 #endif

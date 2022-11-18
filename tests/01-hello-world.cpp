@@ -37,7 +37,7 @@ g->AddEdge(3, 4);
 g->AddEdge(4, 1);
 g->AddEdge(5, 6);
 g->AddEdge(6, 5);
-
+ 
 BreadthFirstSearcher<Graph>::VisitAllVertices(g, 1, [](int u) -> void{
     printf("%d ", u);
 });
