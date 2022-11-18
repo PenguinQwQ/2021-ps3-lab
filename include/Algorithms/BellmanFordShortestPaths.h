@@ -6,7 +6,7 @@
 #include <Algorithms/ShortestPaths.h>
 #include <iostream>
 template<typename TGraph>
-class BellmanFordShortestPaths : ShortestPaths<TGraph> {
+class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
     public:
         BellmanFordShortestPaths(const TGraph *graph, int source);
         ~BellmanFordShortestPaths(){};
