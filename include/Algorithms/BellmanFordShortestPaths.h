@@ -70,7 +70,8 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
 {
     int u, v;
     typename TGraph::value_type w;
-    queue<int> q;
+    std::queue<int> q;
+    q.clear();
     auto vertices = graph->GetVertices();
     for (auto p : vertices)
         {
