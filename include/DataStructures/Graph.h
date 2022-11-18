@@ -7,7 +7,6 @@
 
 #include <DataStructures/Edge.h>
 
-const int N = 2000;
 
 class Graph {
  public:
