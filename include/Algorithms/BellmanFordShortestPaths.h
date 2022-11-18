@@ -20,7 +20,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     for (auto p : vertices)
     {
         this->d[p] = this->INF;
-        std::cout << this->d[p] << std::endl;
+  //      std::cout << this->d[p] << std::endl;
     }
     this->d[source] = 0;
     auto edges = graph->GetEdges();
@@ -33,10 +33,15 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             u = e.GetSource();
             v = e.GetDestination();
             typename TGraph::value_type w = e.GetWeight();
-            std::cout << w << std::endl;
+        //    std::cout << w << std::endl;
             if(this->d[v] > this->d[u] + w)
                 this->d[v] = this->d[u] + w;
         }
+    }
+
+    for (auto p : vertices)
+    {
+        std::cout << p << ":" << this->d[p] << std::endl;
     }
 }
 
