@@ -23,7 +23,8 @@ bool Graph::AddVertex(int vertex)
         return false;
     //否则，代表可以加点。
     vertexs.insert(vertex);
-    Edges[vertex].clear();
+    Edges.find(vertex)->second.clear();
+//    Edges[vertex].clear();
 
     return true;
 }
@@ -46,16 +47,17 @@ bool Graph::AddEdge(int vertex1, int vertex2)
     {
         std::vector<Edge> tmp;
         tmp.push_back(e);
-        Edges[vertex1] = tmp;
+        Edges.find(vertex1)->second = tmp;
+   //     Edges[vertex1] = tmp;
     }
     else
     {
-        for (auto v : Edges[vertex1])
+        for (auto v : Edges.find(vertex1)->second)
         {
             if(v.GetDestination() == vertex2)
                 return false;
         }
-        Edges[vertex1].push_back(e);
+        Edges.find(vertex1)->second.push_back(e);
     }
     return true;
 }
@@ -71,11 +73,11 @@ bool Graph::RemoveEdge(int vertex1, int vertex2)
     }
     else
     {
-        for (auto it = Edges[vertex1].begin() ; it != Edges[vertex1].end() ; it++)
+        for (auto it = Edges.find(vertex1)->second.begin(); it != Edges.find(vertex2)->second.end(); it++)
             {
                 if(it->GetDestination() == vertex2)
                     {
-                        Edges[vertex1].erase(it);
+                        Edges.find(vertex1)->second.erase(it);
                         return true;
                     }
             }
