@@ -7,7 +7,7 @@
 #include <DataStructures/WeightedGraph.h>
 #include<type_traits>
 #include <assert.h>
-const int N = 200000;
+const int N = 20000;
 template <typename TGraph>
 class ShortestPaths {
  public:

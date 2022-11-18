@@ -53,7 +53,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     this->q[++r] = source;
     while(l != r)
     {
-        int k = this->q[(++l) % 10000];
+        int k = this->q[(++l) % 1000];
         for (auto e : graph->GetOutgoingEdges(k))
         {
             v = e.GetDestination();
@@ -65,14 +65,14 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                     this->vis[v] = true;
                     this->d[v] = this->d[u] + w;
                     this->prev[v] = u;
-                    this->q[(++r) % 10000] = v;
+                    this->q[(++r) % 1000] = v;
                     continue;
                 }
             if(this->vis[u] && this->vis[v] && (this->d[v] > this->d[u] + w))
                 {
                     this->d[v] = this->d[u] + w;
                     this->prev[v] = u;
-                    this->q[(++r) % 10000] = v;
+                    this->q[(++r) % 1000] = v;
                     continue;
                 }
         }
