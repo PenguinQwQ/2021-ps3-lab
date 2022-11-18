@@ -83,7 +83,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     while(q.size())
     {
         u = q.front();
-        q.pop_front();
+        q.pop();
         this->reach[u] = false;
         auto edges = graph->GetOutgoingEdges(u);
         for (auto e : edges)
