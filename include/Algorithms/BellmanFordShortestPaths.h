@@ -72,7 +72,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                 {
                     this->d[v] = this->d[u] + w;
                     this->prev[v] = u;
-                    this->q[(++r) % 1000] = v;
                     continue;
                 }
         }
