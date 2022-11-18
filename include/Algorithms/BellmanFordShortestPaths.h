@@ -26,7 +26,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
         u = e.GetSource();
         v = e.GetDestination();
         w = e.GetWeight();
-        Edges.push_back(std::make_pair(pair<int, int>(v, u), w));
+        Edges.push_back(make_pair(std::pair<int, int>(v, u), w));   
     }
 
     this->cnt = 0;
