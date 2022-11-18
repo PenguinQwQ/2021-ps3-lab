@@ -61,10 +61,9 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
             break;
             }
+
             if(undir_u && undir_v)
             {
-                u = undir_u;
-                v = undir_v;
             if(this->vis[v] == false) break;;
             if(this->vis[v] && (this->vis[u] == false))
                 {
