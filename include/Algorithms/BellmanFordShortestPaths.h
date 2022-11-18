@@ -23,10 +23,11 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     std::vector<WeightedEdge<typename TGraph::value_type>> Edges = edges;
     for (std::vector<WeightedEdge<typename TGraph::value_type>>::iterator e = edges.begin() ; e != edges.end() ; e++)  
     {
-        u = e.GetSource();
-        v = e.GetDestination();
-        w = e.GetWeight();
-        Edges.push_back(make_pair(std::pair<int, int>(v, u), w));   
+        u = (*e).GetSource();
+        v = (*e).GetDestination();
+        w = (*e).GetWeight();
+        WeightedEdge<typename TGraph::value_type> tmp(v, u, w);
+        Edges.push_back(tmp);   
     }
 
     this->cnt = 0;
