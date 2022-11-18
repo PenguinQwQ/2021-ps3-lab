@@ -4,6 +4,7 @@
 #include <DataStructures/Graph.h>
 #include <DataStructures/Edge.h>
 #include <utility>
+#include <string>
 
 template<class T, class U>
 std::pair<T, U> operator < (const std::pair<T, U>& x, const std::pair<T, U>& y)
