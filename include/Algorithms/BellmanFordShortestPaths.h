@@ -32,12 +32,12 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     this->reach[source] = true;
     this->dfn[source] = (this->cnt)++;
     int V = vertices.size();
-    for (int i = 1 ; i <= V * 2 ; i++)
+    for (int i = 1 ; i <= V - 1 ; i++)
         for (auto e : edges)
             {
                 int u = e.GetSource(), v = e.GetDestination();
                 typename TGraph::value_type w = e.GetWeight();
-            //    printf("%d->%d with weight %d \n", u, v, w);
+                printf("%d->%d with weight %d \n", u, v, w);
             if(this->vis[u] == false) continue;
             if(this->vis[u] && (this->vis[v] == false))
                 {
