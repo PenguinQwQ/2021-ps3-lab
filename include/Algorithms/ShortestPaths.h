@@ -40,8 +40,6 @@ std::optional<typename TGraph::value_type> ShortestPaths<TGraph>::TryGetDistance
   if(vis[destination]) return d[destination];
   else return std::nullopt;
 }
-
-
 template <typename TGraph>
 bool ShortestPaths<TGraph>::HasPathTo (int destination) const
 {
