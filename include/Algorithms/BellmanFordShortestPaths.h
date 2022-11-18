@@ -18,7 +18,10 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     auto vertices = graph->GetVertices();
     //Initialize the distance
     for (auto p : vertices)
+    {
         this->d[p] = this->INF;
+        std::cout << this->d[p] << std::endl;
+    }
     this->d[source] = 0;
     auto edges = graph->GetEdges();
     int V = vertices.size();
