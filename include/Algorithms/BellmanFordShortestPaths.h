@@ -18,7 +18,8 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
 {
     this->cnt = 0;
     //Initialize the distance
-    for (auto p : graph->GetVertices())
+    auto vertices = graph->GetVertices();
+    for (auto p : vertices)
     {
         this->vis[p] = false;
         this->dfn[p] = 0;
@@ -26,9 +27,11 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     this->d[source] = typename TGraph::value_type();
     this->vis[source] = true;
     this->dfn[source] = (this->cnt)++;
-    int V = graph->GetVertices().size();
+    int V = vertices.size();
+    delete vertices;
+    auto edges = graph->GetEdges();
     for (int i = 1 ; i <= V - 1 ; i++)
-        for (auto e : graph->GetEdges())
+        for (auto e : edges)
             {
                 int u = e.GetSource(), v = e.GetDestination(), undir = false;
                 typename TGraph::value_type w = e.GetWeight();
@@ -75,5 +78,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
             }
         }
+        delete edges;
 }
 #endif

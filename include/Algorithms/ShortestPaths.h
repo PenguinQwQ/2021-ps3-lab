@@ -25,7 +25,6 @@ class ShortestPaths {
   bool reach[N];//reached point set
   int prev[N]; 
   int dfn[N], cnt;
-  typename TGraph::value_type INF;
   typename TGraph::value_type d[N];//this is the array of dis!
   std::priority_queue <std::pair<typename TGraph::value_type, int>, std::vector<std::pair<typename TGraph::value_type, int>> , std::greater<std::pair<typename TGraph::value_type, int>> > pq;
 };
