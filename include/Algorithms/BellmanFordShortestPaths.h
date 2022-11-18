@@ -28,7 +28,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     this->vis[source] = true;
     this->dfn[source] = (this->cnt)++;
     int V = vertices.size();
-    delete vertices;
+    delete &vertices;
     auto edges = graph->GetEdges();
     for (int i = 1 ; i <= V - 1 ; i++)
         for (auto e : edges)
@@ -78,6 +78,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
             }
         }
-        delete edges;
+        delete &edges;
 }
 #endif
