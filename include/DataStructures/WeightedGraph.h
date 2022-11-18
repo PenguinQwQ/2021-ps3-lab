@@ -27,7 +27,7 @@ class WeightedGraph : public Graph{
   std::vector<WeightedEdge<T2>> GetIncomingEdges(int vertex) const;
   std::vector<WeightedEdge<T2>> GetOutgoingEdges(int vertex) const;
  public:
-   std::map<std::pair<int, int>, T2> G;
+  std::map<std::pair<int, int>, T2> G;
 };
 template <class T2>
 WeightedGraph<T2>::WeightedGraph():Graph()
