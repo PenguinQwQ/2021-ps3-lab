@@ -13,7 +13,8 @@ class ShortestPaths {
   ShortestPaths(){};
   ShortestPaths(const TGraph *graph, int source)
   {
-      static_assert(std::is_base_of<WeightedGraph, TGraph>::value == true, "TGraph should be weighted");
+   //   static_assert(std::is_))
+   //   static_assert(std::is_base_of<WeightedGraph, TGraph>::value == true, "TGraph should be weighted");
   };
   ~ShortestPaths(){};
  public:
