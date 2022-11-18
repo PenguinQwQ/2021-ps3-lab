@@ -89,7 +89,7 @@ std::vector<WeightedEdge<T2>> UndirectedWeightedGraph<T2>::GetEdges() const
     t.clear();
     for (auto it = Graph::vertexs.begin() ; it != Graph::vertexs.end() ; it++)
     {
-        for (auto i = vec[*it].begin() ; i != vec[*it].end() ; i++)
+        for (auto i = vec.find(*it)->second.begin(); i != vec.find(*it)->second.end() ; i++)
             {
                 int u = i->GetSource(), v = i->GetDestination(), w = WeightedGraph<T2>::G.at(std::pair(u, v));
                 if(u <= v)
