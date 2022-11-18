@@ -40,8 +40,10 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                 printf("%d->%d with weight %d \n", u, v, w);
             if(graph->G.find(std::pair<int, int>(v, u)) != graph->G.end())        
                     undir = true;
+
             while(1)
             {
+                printf("%d->%d with weight %d \n", u, v, w);
             if(this->vis[u] == false) break;
             if(this->vis[u] && (this->vis[v] == false))
                 {
@@ -61,7 +63,8 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
             if(undir)
             {
-            if(this->vis[v] == false) break;;
+                printf("%d->%d with weight %d \n", v, u, w);
+            if(this->vis[v] == false) continue;
             if(this->vis[v] && (this->vis[u] == false))
                 {
                     this->dfn[u] = (this->cnt)++;
