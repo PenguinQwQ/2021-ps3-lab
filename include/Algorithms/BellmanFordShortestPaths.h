@@ -76,7 +76,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
         {
             this->vis[point] = false;
             this->reach[point] = false;//not in the queue
-            this->prev[point] = typename TGraph::value_type();
+            this->prev[point] = 0;
         }
     q.push(source);
     this->vis[source] = true;
