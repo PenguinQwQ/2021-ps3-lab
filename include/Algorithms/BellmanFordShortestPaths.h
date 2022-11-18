@@ -51,7 +51,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     for (auto it : vertices) this->vis[it] = false;
     this->vis[source] = true;
     this->q[++r] = source;
-    graph->UpdOutgoingEdges();
+//    graph->UpdOutgoingEdges();
     while(l != r)
     {
         int k = this->q[(++l) % 1000];

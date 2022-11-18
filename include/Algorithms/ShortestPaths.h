@@ -14,6 +14,7 @@ class ShortestPaths {
   ShortestPaths(const TGraph *graph, int source)
   {
     static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
+    graph->UpdOutgoingEdges();
    //   static_assert(std::is_))
    //   static_assert(std::is_base_of<WeightedGraph, TGraph>::value == true, "TGraph should be weighted");
   };
