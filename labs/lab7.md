@@ -1,7 +1,7 @@
 # Lab 7 - 初探模板元编程
 
 本次实验我们需要利用模板元编程中的一些奇技淫巧，来完成上次的思考题二。
-
+ 
 ## 更简洁的模板声明
 
 你需要将`ShortestPaths`和`DijkstraShortestPaths`的模板声明变为

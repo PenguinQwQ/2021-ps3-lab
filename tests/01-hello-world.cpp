@@ -2,6 +2,7 @@
 #include <cassert>
 #include <Algorithms/BreadthFirstSearcher.h>
 #include <Algorithms/DepthFirstSearcher.h>
+
 #include <iostream>
 #include <cstdio>
 #include <DataStructures/WeightedEdge.h>
@@ -10,6 +11,9 @@
 #include <DataStructures/UndirectedWeightedGraph.h>
 #include <Algorithms/ShortestPaths.h>
 #include <Algorithms/DijkstraShortestPaths.h>
+#include <Algorithms/BellmanFordShortestPaths.h>
+
+
 
 int main()
 {
