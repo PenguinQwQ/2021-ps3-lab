@@ -8,7 +8,7 @@
 #include<type_traits>
 #include <assert.h>
 
-const int N = 2000;
+const int N = 105;
 template <typename TGraph>
 class ShortestPaths {
   static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
