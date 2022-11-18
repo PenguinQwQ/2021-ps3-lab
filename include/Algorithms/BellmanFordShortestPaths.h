@@ -49,12 +49,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
         }
     }
-/*
-    for (auto p : vertices)
-    {
-        std::cout << p << ":" << this->d[p] << std::endl;
-    }
-    */
 }
 
 
