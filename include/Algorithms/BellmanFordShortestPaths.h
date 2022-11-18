@@ -44,42 +44,6 @@ void SPFA()
 template <typename TGraph>
 BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source)
 {
-    int l = 0, r = 0, u, v;
-    static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
-    auto vertices = graph->GetVertices(); 
-    this->d[source] = typename TGraph::value_type();
-    for (auto it : vertices) this->vis[it] = false;
-    this->vis[source] = true;
-    this->q[++r] = source;
-//    graph->UpdOutgoingEdges();
-    while(l != r)
-    {
-        int k = this->q[(++l) % 1000];
-        for (auto e : graph->OutEdges[k])
-        {
-            v = e.GetDestination();
-            u = e.GetSource();
-            typename TGraph::value_type w = e.GetWeight();
-            if(this->vis[u] == false) continue;
-            if(this->vis[u] && this->vis[v] == false)
-                {
-                    this->vis[v] = true;
-                    this->d[v] = this->d[u] + w;
-                    this->prev[v] = u;
-                    this->q[(++r) % 1000] = v;
-                    continue;
-                }
-            if(this->vis[u] && this->vis[v] && (this->d[v] > this->d[u] + w))
-                {
-                    this->d[v] = this->d[u] + w;
-                    this->prev[v] = u;
-                    continue;
-                }
-        }
-    }
-  
-  
-  /*
     auto vertices = graph->GetVertices();
     auto edges = graph->GetEdges();
     //Initialize the distance
@@ -95,9 +59,10 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
 
     for (int i = 1 ; i <= V - 1 ; i++)
     {
-        for (auto e : edges)
+        for (auto u : vertices)
+        {
+        for (auto e : graph->OutEdges[u])
             {
-                u = e.GetSource();
                 v = e.GetDestination();
                 typename TGraph::value_type w = e.GetWeight();
             if(this->vis[u] == false) continue;
@@ -117,7 +82,5 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
         }
     }
-
-    */
 }
 #endif
