@@ -5,6 +5,7 @@
 #include <utility>
 #include <Algorithms/ShortestPaths.h>
 #include <iostream>
+#include <queue>
 #include <assert.h>
 template<typename TGraph>
 class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
@@ -13,6 +14,8 @@ class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
         BellmanFordShortestPaths(const TGraph *graph, int source);
         ~BellmanFordShortestPaths(){};
 };
+
+/*
 
 template <typename TGraph>
 BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source)
@@ -60,4 +63,45 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
         }
     }
 }
+*/
+
+template <typename TGraph>
+BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source)
+{
+    int u, v;
+    typename TGraph::value_type w;
+    queue<int> q;
+    auto vertices = graph->GetVertices();
+    for (auto p : vertices)
+        {
+            this->vis[p] = false;
+            this->reach[p] = false;//not in the queue
+            this->prev[p] = typename TGraph::value_type();
+        }
+    q.push(source);
+    this->vis[p] = true;
+    while(q.size())
+    {
+        u = q.front();
+        q.pop_front();
+        this->reach[u] = false;
+        for (auto e : graph->OutgointEdges(u))
+        {
+            v = e.GetDestination();
+            w = e.GetWeight();
+            if(this->vis[v] == false || (this->d[v] > this->d[u] + w))
+            {
+                this->vis[v] = true;
+                this->d[v] = this->d[u] + w;
+                this->prev[v] = u;
+                if(this->reach[v] == false)
+                {
+                    q.push(v);
+                    this->reach[v] = true;
+                }
+            }
+        }
+    }
+}
+
 #endif
