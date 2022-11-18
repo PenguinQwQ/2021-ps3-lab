@@ -38,7 +38,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                 int u = e.GetSource(), v = e.GetDestination(), undir_u = 0, undir_v = 0;
                 typename TGraph::value_type w = e.GetWeight();
                 printf("%d->%d with weight %d \n", u, v, w);
-            if(graph->G.find(pair<int, int>(v, u)) != graph->G.end())        
+            if(graph->G.find(std::pair<int, int>(v, u)) != graph->G.end())        
                 {
                     undir_u = v; undir_v = u;
                 }
