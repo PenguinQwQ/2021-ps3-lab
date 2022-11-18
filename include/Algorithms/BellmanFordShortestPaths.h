@@ -12,38 +12,11 @@ class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
         BellmanFordShortestPaths(const TGraph *graph, int source);
         ~BellmanFordShortestPaths(){};
 };
-/*
-
-void SPFA()
-{
-	memset(d,0x7f,sizeof(d));
-	memset(book,0,sizeof(book));
-	d[s]=0;
-	q[++r]=s;
-	book[s]=1;
-	while(l!=r)
-		{
-			int k=q[(++l)%5000];
-			for(int i=head[k];i;i=e[i].next)
-				{
-					int v=e[i].to,w=e[i].val;
-					if(d[v]>d[k]+w)
-						{
-							d[v]=d[k]+w;
-							//pre[v]=k;记录前驱 
-							if(!book[v])
-								q[(++r)%5000]=v;
-						}
-				}
-		}
-}
-
-
-*/
 
 template <typename TGraph>
 BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source)
 {
+    this->cnt = 0;
     auto vertices = graph->GetVertices();
     auto edges = graph->GetEdges();
     //Initialize the distance
@@ -51,10 +24,13 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     {
         this->vis[p] = false;
         this->reach[p] = false;
+        this->dfn[p] = 0;
   //      std::cout << this->d[p] << std::endl;
     }
     this->d[source] = typename TGraph::value_type();
     this->vis[source] = true;
+    this->reach[source] = true;
+    this->dfn[source] = (++this->cnt);
     int V = vertices.size();
     for (int i = 1 ; i <= V - 1 ; i++)
         for (auto e : edges)
@@ -65,12 +41,13 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             if(this->vis[u] == false) continue;
             if(this->vis[u] && (this->vis[v] == false))
                 {
+                    this->dfn[v] = (++this->cnt);
                     this->vis[v] = true;
                     this->d[v] = this->d[u] + w;
                     this->prev[v] = u;
                     continue;
                 }
-            if(this->vis[u] && this->vis[v] && (this->d[v] > this->d[u] + w))
+            if(this->vis[u] && this->vis[v] && (this->dfn[u] < this->dfn[v]) && (this->d[v] > this->d[u] + w))
             {
                 this->d[v] = this->d[u] + w;
                 this->prev[v] = u;
