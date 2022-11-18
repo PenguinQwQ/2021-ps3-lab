@@ -23,8 +23,12 @@ bool Graph::AddVertex(int vertex)
         return false;
     //否则，代表可以加点。
     vertexs.insert(vertex);
-    Edges.find(vertex)->second.clear();
-//    Edges[vertex].clear();
+//    std::vector<int> vec;
+//    vec.clear();
+
+//    Edges.insert(std::pair<int, std::vector<int> > (vertex, vec));
+//    Edges.find(vertex)->second.clear();
+    Edges[vertex].clear();
 
     return true;
 }
@@ -47,8 +51,8 @@ bool Graph::AddEdge(int vertex1, int vertex2)
     {
         std::vector<Edge> tmp;
         tmp.push_back(e);
-        Edges.find(vertex1)->second = tmp;
-   //     Edges[vertex1] = tmp;
+   //     Edges.find(vertex1)->second = tmp;
+        Edges[vertex1] = tmp;
     }
     else
     {
