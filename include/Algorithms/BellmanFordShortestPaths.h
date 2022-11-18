@@ -80,6 +80,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
         }
     q.push(source);
     this->vis[source] = true;
+    this->reach[source] = true;
     while(q.size())
     {
         u = q.front();
