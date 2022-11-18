@@ -38,11 +38,12 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                 this->d[v] = this->d[u] + w;
         }
     }
-
+/*
     for (auto p : vertices)
     {
         std::cout << p << ":" << this->d[p] << std::endl;
     }
+    */
 }
 
 
