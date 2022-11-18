@@ -31,16 +31,16 @@ std::optional<typename TGraph::value_type> ShortestPaths<TGraph>::TryGetDistance
   else return std::nullopt;
 }
 
-/*
-template <template<typename> class TGraph>
-bool ShortestPaths<TGraph, TValue>::HasPathTo (int destination) const
+
+template <typename TGraph>
+bool ShortestPaths<TGraph>::HasPathTo (int destination) const
 {
   if(vis[destination]) return true;
   else return false;
 }
 
-template <template<typename> class TGraph, typename TValue>
-std::optional<std::vector<int>> ShortestPaths<TGraph, TValue>::TryGetShortestPathTo(int destination) const
+template <typename TGraph>
+std::optional<std::vector<int>> ShortestPaths<TGraph>::TryGetShortestPathTo(int destination) const
 {
     std::vector<int> path;
     path.clear();
@@ -55,5 +55,4 @@ std::optional<std::vector<int>> ShortestPaths<TGraph, TValue>::TryGetShortestPat
     return path;
 }
 
-*/
 #endif
