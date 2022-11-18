@@ -79,7 +79,6 @@ delete g;
   }
 
   printf("Next The BellmanFord\n");
-  ShortestPaths<WeightedGraph<int>> *p = nullptr;
   for (int i = 1; i <= 6; ++i) {
     p = new BellmanFordShortestPaths<WeightedGraph<int>>(g, i);
     for (int j = 1; j <= 6; ++j) {
