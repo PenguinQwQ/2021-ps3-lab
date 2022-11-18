@@ -41,8 +41,25 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     {
         for (typename std::vector<WeightedEdge<typename TGraph::value_type>>::iterator it = Edges.begin() ; it != Edges.end() ; it++)
         {
-
+        u = (*it).GetSource();
+        v = (*it).GetDestination();
+        w = (*it).GetWeight(); 
+        if(this->vis[u] == false) continue;
+        if(this->vis[u] == true && this->vis[v] == false)
+            {
+                this->vis[v] = true;
+                this->d[v] = this->d[u] + w;
+                this->prev[v] = u;
+                continue;
+            }
+        if(this->vis[u] && this->vis[v] && (this->d[u] + w < this->d[v]))
+            {
+            this->d[v] = this->d[u] + w;
+            this->prev[v] = u;
+            continue;
+            }
         }
+        /*
         for (auto e : Edges)
         {
         u = e.GetSource();
@@ -63,6 +80,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             continue;
             }
         }
+        */
     }
 
 /*
