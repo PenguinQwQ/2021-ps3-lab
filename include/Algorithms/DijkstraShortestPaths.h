@@ -29,7 +29,7 @@ DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int so
     while (this->pq.size() > 0)
     {
         int u = this->pq.top().second;
-        TValue dis = this->pq.top().first;
+        typename TGraph::value_type dis = this->pq.top().first;
         this->pq.pop();
         if(this->vis[u]) continue;
         this->vis[u] = true;
