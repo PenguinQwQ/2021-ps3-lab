@@ -29,7 +29,6 @@ class WeightedGraph : public Graph{
   void UpdOutgoingEdges();
  public:
   std::map<std::pair<int, int>, T2> G;
-  std::vector<WeightedEdge<T2>> OutEdges[N];
 };
 template <class T2>
 WeightedGraph<T2>::WeightedGraph():Graph()
@@ -41,16 +40,6 @@ WeightedGraph<T2>::WeightedGraph():Graph()
 //    static_assert(std::is_arithmetic<T2>::value == true, "TValue requires operator+");
 //    static_assert(std::is_constructible<T2>::value == true, "TValue requires default constructor");
     this->G.clear();}
-template <class T2>
-void WeightedGraph<T2>::UpdOutgoingEdges()
-{
-   auto vertices = WeightedGraph<T2>::GetVertices();
-   for (auto p : vertices)
-   {
-      OutEdges[p] = WeightedGraph<T2>::GetOutgoingEdges(p);
-   }
-}
-
 //Destructor
 template <class T2>
 WeightedGraph<T2>::~WeightedGraph()

@@ -14,7 +14,6 @@ class ShortestPaths {
   ShortestPaths(const TGraph *graph, int source)
   {
     static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
-    graph->UpdOutgoingEdges();
    //   static_assert(std::is_))
    //   static_assert(std::is_base_of<WeightedGraph, TGraph>::value == true, "TGraph should be weighted");
   };
@@ -27,7 +26,6 @@ class ShortestPaths {
   bool vis[N];//queue point set 
   bool reach[N];//reached point set
   int prev[N]; 
-  int q[N];//SPFA queue
   int dfn[N], cnt;
   typename TGraph::value_type INF;
   typename TGraph::value_type d[N];//this is the array of dis!

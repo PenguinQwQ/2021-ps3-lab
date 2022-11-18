@@ -39,7 +39,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
               //  printf("%d->%d with weight %d \n", u, v, w);
             if(graph->G.find(std::pair<int, int>(v, u)) != graph->G.end())        
                     undir = true;
-
             while(1)
             {
               //  printf("%d->%d with weight %d \n", u, v, w);
@@ -81,10 +80,5 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
 
         }
-
- /*   for (auto p : vertices)
-        printf("d[%d]=%d\n", p, this->d[p]);
-        */
-
 }
 #endif
