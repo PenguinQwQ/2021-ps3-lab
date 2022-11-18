@@ -4,6 +4,7 @@
 #include <vector>
 #include <optional>
 #include <queue>
+#include <DataStructures/WeightedGraph.h>>
 #include<type_traits>
 const int N = 20000;
 template <typename TGraph>
@@ -12,7 +13,7 @@ class ShortestPaths {
   ShortestPaths(){};
   ShortestPaths(const TGraph *graph, int source)
   {
-      static_assert(std::is_base_of<typename WeightedGraph,typename TGraph>::value == true, "TGraph should be weighted");
+      static_assert(std::is_base_of<WeightedGraph, TGraph>::value == true, "TGraph should be weighted");
   };
   ~ShortestPaths(){};
  public:
