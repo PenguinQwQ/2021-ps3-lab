@@ -19,6 +19,7 @@ DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int so
     auto vec2 = graph->GetVertices();
     for (auto it : vec2)
     {
+        this->reach[it] = false;
         this->vis[it] = false;
         this->prev[it] = 0;
     }
