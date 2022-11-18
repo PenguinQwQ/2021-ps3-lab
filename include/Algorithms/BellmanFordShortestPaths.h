@@ -17,22 +17,18 @@ template <typename TGraph>
 BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source)
 {
     this->cnt = 0;
-    auto vertices = graph->GetVertices();
-    auto edges = graph->GetEdges();
     //Initialize the distance
-    for (auto p : vertices)
+    for (auto p : graph->GetVertices())
     {
         this->vis[p] = false;
-        this->reach[p] = false;
         this->dfn[p] = 0;
     }
     this->d[source] = typename TGraph::value_type();
     this->vis[source] = true;
-    this->reach[source] = true;
     this->dfn[source] = (this->cnt)++;
-    int V = vertices.size();
+    int V = graph->GetVertices().size();
     for (int i = 1 ; i <= V - 1 ; i++)
-        for (auto e : edges)
+        for (auto e : graph->GetEdges())
             {
                 int u = e.GetSource(), v = e.GetDestination(), undir = false;
                 typename TGraph::value_type w = e.GetWeight();
@@ -78,7 +74,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                 continue;
             }
             }
-
         }
 }
 #endif
