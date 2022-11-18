@@ -30,7 +30,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     this->d[source] = typename TGraph::value_type();
     this->vis[source] = true;
     this->reach[source] = true;
-    this->dfn[source] = (++this->cnt);
+    this->dfn[source] = (this->cnt)++;
     int V = vertices.size();
     for (int i = 1 ; i <= V - 1 ; i++)
         for (auto e : edges)
@@ -41,7 +41,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             if(this->vis[u] == false) continue;
             if(this->vis[u] && (this->vis[v] == false))
                 {
-                    this->dfn[v] = (++this->cnt);
+                    this->dfn[v] = (this->cnt)++;
                     this->vis[v] = true;
                     this->d[v] = this->d[u] + w;
                     this->prev[v] = u;
