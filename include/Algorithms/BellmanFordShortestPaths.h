@@ -35,16 +35,14 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     for (int i = 1 ; i <= V - 1 ; i++)
         for (auto e : edges)
             {
-                int u = e.GetSource(), v = e.GetDestination(), undir_u = 0, undir_v = 0;
+                int u = e.GetSource(), v = e.GetDestination(), undir = false;
                 typename TGraph::value_type w = e.GetWeight();
                 printf("%d->%d with weight %d \n", u, v, w);
             if(graph->G.find(std::pair<int, int>(v, u)) != graph->G.end())        
-                {
-                    undir_u = v; undir_v = u;
-                }
+                    undir = true;
             while(1)
             {
-            if(this->vis[u] == false) break;;
+            if(this->vis[u] == false) break;
             if(this->vis[u] && (this->vis[v] == false))
                 {
                     this->dfn[v] = (this->cnt)++;
@@ -61,8 +59,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
             break;
             }
-
-            if(undir_u && undir_v)
+            if(undir)
             {
             if(this->vis[v] == false) break;;
             if(this->vis[v] && (this->vis[u] == false))
