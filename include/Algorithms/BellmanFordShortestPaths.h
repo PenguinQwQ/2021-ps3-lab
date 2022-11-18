@@ -57,8 +57,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     this->vis[source] = true;
     int V = vertices.size();
 
-    for (int i = 1 ; i <= V - 1 ; i++)
-    {
         for (auto u : vertices)
         for (auto e : graph->OutEdges[u])
             {
@@ -79,8 +77,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                 this->prev[v] = u;
                 continue;
             }
-            }
-    }
+        }
 
     for (auto p : vertices)
         printf("d[%d]=%d\n", p, this->d[p]);
