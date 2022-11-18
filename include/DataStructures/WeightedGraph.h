@@ -37,7 +37,7 @@ template <class T2>
 WeightedGraph<T2>::WeightedGraph():Graph()
 { 
     static_assert(std::is_constructible<T2>::value == true, "TValue requires default constructor");
-    static_assert(std::is_arithmetic<T2>::value == true, "TValue requires operator+");
+ //   static_assert(std::is_arithmetic<T2>::value == true, "TValue requires operator+");
     this->G.clear();}
 //Destructor
 template <class T2>
