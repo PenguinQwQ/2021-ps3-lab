@@ -25,7 +25,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
         this->vis[p] = false;
         this->reach[p] = false;
         this->dfn[p] = 0;
-  //      std::cout << this->d[p] << std::endl;
     }
     this->d[source] = typename TGraph::value_type();
     this->vis[source] = true;
