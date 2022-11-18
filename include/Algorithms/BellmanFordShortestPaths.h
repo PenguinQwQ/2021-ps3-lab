@@ -21,11 +21,11 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     typename TGraph::value_type w;
     std::vector<WeightedEdge<typename TGraph::value_type>> edges = graph->GetEdges();
     std::vector<WeightedEdge<typename TGraph::value_type>> Edges = edges;
-    for (std::vector<WeightedEdge<typename TGraph::value_type>>::iterator e = edges.begin() ; e != edges.end() ; e++)  
+    for (auto e : edges)  
     {
-        u = (*e).GetSource();
-        v = (*e).GetDestination();
-        w = (*e).GetWeight();
+        u = e.GetSource();
+        v = e.GetDestination();
+        w = e.GetWeight();
         WeightedEdge<typename TGraph::value_type> tmp(v, u, w);
         Edges.push_back(tmp);   
     }
@@ -34,11 +34,32 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     //Initialize the distance
     auto vertices = graph->GetVertices();
     for (auto p : vertices)
-    {
         this->vis[p] = false;
-        this->dfn[p] = 0;
+    this->vis[source] = true;
+    int V = vertices.size();
+    for (int i = 1 ; i <= V - 1 ; i++)
+    {
+        for (auto e : Edges)
+        {
+        u = e.GetSource();
+        v = e.GetDestination();
+        w = e.GetWeight(); 
+        if(this->vis[u] == false) continue;
+        if(this->vis[u] == true && this->vis[v] == false)
+            {
+                this->vis[v] = true;
+                this->d[v] = this->d[u] + w;
+                this->prev[v] = u;
+                continue;
+            }
+        if(this->vis[u] && this->vis[v] && (this->d[u] + w < this->d[v]))
+            {
+            this->d[v] = this->d[u] + w;
+            this->prev[v] = u;
+            continue;
+            }
+        }
     }
-
 
 /*
     this->cnt = 0;
