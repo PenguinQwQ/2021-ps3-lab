@@ -32,7 +32,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     this->reach[source] = true;
     this->dfn[source] = (this->cnt)++;
     int V = vertices.size();
-    for (int i = 1 ; i <= V - 1 ; i++)
+    for (int i = 1 ; i <= V * 2 ; i++)
         for (auto e : edges)
             {
                 int u = e.GetSource(), v = e.GetDestination();
