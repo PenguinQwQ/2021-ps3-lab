@@ -83,11 +83,13 @@ int UndirectedWeightedGraph<T2>::CountEdges() const
 template <class T2>
 std::vector<WeightedEdge<T2>> UndirectedWeightedGraph<T2>::GetEdges() const
 {
+    std::map<int, std::vector<Edge> > vec = Graph::Edges;
+
     std::vector<WeightedEdge<T2>> t;//ans set
     t.clear();
     for (auto it = Graph::vertexs.begin() ; it != Graph::vertexs.end() ; it++)
     {
-        for (auto i = Graph::Edges.at(*it).begin() ; i != Graph::Edges.at(*it).end() ; i++)
+        for (auto i = vec[*it].begin() ; i != vec[*it].end() ; i++)
             {
                 int u = i->GetSource(), v = i->GetDestination(), w = WeightedGraph<T2>::G.at(std::pair(u, v));
                 if(u <= v)
