@@ -82,7 +82,7 @@ delete g;
   for (int i = 1; i <= 6; ++i) {
     p = new BellmanFordShortestPaths<WeightedGraph<int>>(g, i);
     for (int j = 1; j <= 6; ++j) {
-      printf("%d ", p->d[i]);
+      std::cout << p->d[i] << " ";
     }
     printf("\n");
     delete p;
