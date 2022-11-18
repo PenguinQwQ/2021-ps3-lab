@@ -48,8 +48,10 @@ bool WeightedGraph<T2>::AddEdge(int vertex1, int vertex2, T2 weight)
 {
     if(Graph::AddEdge(vertex1, vertex2) == false)
         return false;
-    G.insert(std::pair(vertex1, vertex2), weight);
-//    G[std::pair(vertex1, vertex2)] = weight;
+  //  G.insert(std::pair(vertex1, vertex2), weight);
+    G.insert(make_pair(std::pair <int, int> (vertex1, vertex2), weight));
+
+  //  G[std::pair(vertex1, vertex2)] = weight;
     return true;
 }
 template <class T2>
