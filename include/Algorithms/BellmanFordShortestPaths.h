@@ -39,7 +39,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     int V = vertices.size();
     for (int i = 1 ; i <= V - 1 ; i++)
     {
-        for (std::vector<WeightedEdge<typename TGraph::value_type>>::iterator it = Edges.begin() ; it != Edges.end() ; it++)
+        for (typename std::vector<WeightedEdge<typename TGraph::value_type>>::iterator it = Edges.begin() ; it != Edges.end() ; it++)
         {
 
         }
