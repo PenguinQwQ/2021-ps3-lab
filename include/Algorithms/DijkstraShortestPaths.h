@@ -16,11 +16,9 @@ class DijkstraShortestPaths : public ShortestPaths<TGraph>{
 template <typename TGraph>
 DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int source)
 {
-    this->INF = 2147483647;
     auto vec2 = graph->GetVertices();
     for (auto it : vec2)
     {
-        this->d[it] = this->INF;
         this->vis[it] = false;
         this->prev[it] = 0;
     }
