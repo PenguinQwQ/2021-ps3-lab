@@ -22,6 +22,7 @@ DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int so
         this->vis[it] = false;
         this->prev[it] = 0;
     }
+    this->reach[source] = true;
     this->d[source] = typename TGraph::value_type();
     this->pq.push(std::make_pair(this->d[source], source));
     while (this->pq.size() > 0)
@@ -36,11 +37,21 @@ DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int so
         {
             typename TGraph::value_type w = it.GetWeight();
             int v = it.GetDestination();
-            if(this->d[v] > dis + w)
+            if(this->reach[v] == false) //Haven't reached v yet
             {
+                this->reach[v] = true;
                 this->d[v] = dis + w;
                 this->pq.push(std::make_pair(this->d[v], v));
                 this->prev[v] = u;
+            }
+            else
+            {
+                if(this->d[v] > dis + w)
+                {
+                this->d[v] = dis + w;
+                this->pq.push(std::make_pair(this->d[v], v));
+                this->prev[v] = u; 
+                }
             }
         }
     }

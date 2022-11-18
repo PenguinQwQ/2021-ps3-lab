@@ -24,7 +24,8 @@ class ShortestPaths {
   std::optional<typename TGraph::value_type> TryGetDistanceTo(int destination) const;
   std::optional<std::vector<int>> TryGetShortestPathTo(int destination) const;
  public:
-  bool vis[N];//reachable point set 
+  bool vis[N];//queue point set 
+  bool reach[N];//reached point set
   int prev[N]; 
   typename TGraph::value_type INF;
   typename TGraph::value_type d[N];//this is the array of dis!
