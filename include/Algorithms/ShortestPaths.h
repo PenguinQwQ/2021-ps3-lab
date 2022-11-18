@@ -4,6 +4,7 @@
 #include <vector>
 #include <optional>
 #include <queue>
+#include <WeightedGraph.h>
 #include<type_traits>
 const int N = 20000;
 template <typename TGraph>
