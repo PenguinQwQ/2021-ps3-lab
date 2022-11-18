@@ -38,7 +38,7 @@ class WeightedGraph : public Graph{
 template <class T2>
 WeightedGraph<T2>::WeightedGraph():Graph()
 { 
-    static_assert(T2() != NULL, "TValue requires default constructor");
+    static_assert(T2() != nullptr, "TValue requires default constructor");
     this->G.clear();}
 //Destructor
 template <class T2>
