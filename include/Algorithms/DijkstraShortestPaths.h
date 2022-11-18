@@ -6,15 +6,15 @@
 #include <Algorithms/ShortestPaths.h>
 #include <iostream>
 
-template <template<typename> class TGraph, typename TValue>
-class DijkstraShortestPaths : public ShortestPaths<TGraph, TValue>{
+template <typename TGraph>
+class DijkstraShortestPaths : public ShortestPaths<TGraph>{
  public:
-  DijkstraShortestPaths(const TGraph<TValue> *graph, int source);
+  DijkstraShortestPaths(const TGraph *graph, int source);
   ~DijkstraShortestPaths(){};
 };
 
-template <template<typename> class TGraph, typename TValue>
-DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue> *graph, int source)
+template <typename TGraph>
+DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int source)
 {
     this->INF = 2147483647;
     auto vec2 = graph->GetVertices();
@@ -24,7 +24,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         this->vis[it] = false;
         this->prev[it] = 0;
     }
-    this->d[source] = TValue();
+    this->d[source] = typename TGraph::value_type();
     this->pq.push(std::make_pair(this->d[source], source));
     while (this->pq.size() > 0)
     {
@@ -36,7 +36,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         auto vec = graph->GetOutgoingEdges(u);
         for (auto it : vec)
         {
-            TValue w = it.GetWeight();
+            typename TGraph::value_type w = it.GetWeight();
             int v = it.GetDestination();
             if(this->d[v] > dis + w)
             {
