@@ -44,7 +44,7 @@ void SPFA()
 template <typename TGraph>
 BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source)
 {
-    int l = 0, r = 0;
+    int l = 0, r = 0, u, v;
     static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
     auto vertices = graph->GetVertices(); 
     this->d[source] = typename TGraph::value_type();
@@ -56,7 +56,8 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
         int k = this->q[(++l) % 10000];
         for (auto e : graph->GetOutgoingEdges(k))
         {
-            int v = e.GetDestination();
+            v = e.GetDestination();
+            u = e.GetSource();
             typename TGraph::value_type w = e.GetWeight();
             if(this->vis[u] == false) continue;
             if(this->vis[u] && this->vis[v] == false)
