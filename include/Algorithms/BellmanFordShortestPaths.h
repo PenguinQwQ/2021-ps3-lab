@@ -55,15 +55,14 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     }
     this->d[source] = typename TGraph::value_type();
     this->vis[source] = true;
-    int V = vertices.size(), u, v;
+    int V = vertices.size();
 
     for (int i = 1 ; i <= V - 1 ; i++)
     {
         for (auto u : vertices)
-        {
         for (auto e : graph->OutEdges[u])
             {
-                v = e.GetDestination();
+                int v = e.GetDestination();
                 typename TGraph::value_type w = e.GetWeight();
                 printf("%d->%d with weight %d \n", u, v, w);
             if(this->vis[u] == false) continue;
@@ -81,7 +80,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                 continue;
             }
             }
-        }
     }
 
     for (auto p : vertices)
