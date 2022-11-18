@@ -22,7 +22,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
         this->reach[p] = false;
   //      std::cout << this->d[p] << std::endl;
     }
-    this->d[source] = 0;
+    this->d[source] = typename TGraph::value_type();
     this->vis[source] = true;
 
     auto edges = graph->GetEdges();
