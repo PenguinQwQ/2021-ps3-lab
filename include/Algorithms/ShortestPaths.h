@@ -6,6 +6,7 @@
 #include <queue>
 #include <DataStructures/WeightedGraph.h>
 #include<type_traits>
+#include <assert.h>
 const int N = 20000;
 template <typename TGraph>
 class ShortestPaths {
@@ -14,7 +15,6 @@ class ShortestPaths {
   ShortestPaths(const TGraph *graph, int source)
   {
     static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
-    
    //   static_assert(std::is_))
    //   static_assert(std::is_base_of<WeightedGraph, TGraph>::value == true, "TGraph should be weighted");
   };

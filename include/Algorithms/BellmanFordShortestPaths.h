@@ -5,6 +5,7 @@
 #include <utility>
 #include <Algorithms/ShortestPaths.h>
 #include <iostream>
+#include <assert.h>
 template<typename TGraph>
 class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
     public:
@@ -14,6 +15,7 @@ class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
 template <typename TGraph>
 BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source)
 {
+    static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
     auto vertices = graph->GetVertices();
     //Initialize the distance
     for (auto p : vertices)
@@ -28,7 +30,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     auto edges = graph->GetEdges();
     int V = vertices.size();
     int u, v;
-    for (int i = 1 ; i <= V - 1 ; i++)
+    for (int i = 1 ; i <= V ; i++)
     {
         for (auto e : edges)
         {
@@ -42,9 +44,10 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                     this->d[v] = this->d[u] + w;
                     continue;
                 }
-            if(this->vis[u] && this->vis[v] && this->d[v] > this->d[u] + w)
+            if(this->vis[u] && this->vis[v] && (this->d[v] > this->d[u] + w))
             {
                 this->d[v] = this->d[u] + w;
+                continue;
             }
         }
     }
