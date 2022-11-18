@@ -72,14 +72,14 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     typename TGraph::value_type w;
     std::queue<int> q;
     auto vertices = graph->GetVertices();
-    for (auto p : vertices)
+    for (auto point : vertices)
         {
-            this->vis[p] = false;
-            this->reach[p] = false;//not in the queue
-            this->prev[p] = typename TGraph::value_type();
+            this->vis[point] = false;
+            this->reach[point] = false;//not in the queue
+            this->prev[point] = typename TGraph::value_type();
         }
     q.push(source);
-    this->vis[p] = true;
+    this->vis[source] = true;
     while(q.size())
     {
         u = q.front();
