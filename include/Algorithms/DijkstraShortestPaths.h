@@ -41,7 +41,7 @@ DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int so
             typename TGraph::value_type w = it.GetWeight();
             int v = it.GetDestination();
             if(this->reach[v] == false) //Haven't reached v yet
-            {
+            { 
                 this->reach[v] = true;
                 this->d[v] = dis + w;
                 this->pq.push(std::make_pair(this->d[v], v));

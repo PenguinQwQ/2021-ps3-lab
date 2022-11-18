@@ -57,7 +57,7 @@ DepthFirstSearcher<Graph>::VisitAllVertices(g, 5, [](int u) -> void{
 delete g;
 
 */
-  auto *g = new WeightedGraph<int>();
+  auto *g = new UndirectedWeightedGraph<int>();
   for (int i = 1; i <= 6; ++i) {
     g->AddVertex(i);
   }
@@ -68,9 +68,9 @@ delete g;
   g->AddEdge(5, 6, 5);
   g->AddEdge(6, 5, 6);
   
-  ShortestPaths<WeightedGraph<int>> *p = nullptr;
+  ShortestPaths<UndirectedWeightedGraph<int>> *p = nullptr;
   for (int i = 1; i <= 6; ++i) {
-    p = new DijkstraShortestPaths<WeightedGraph<int>>(g, i);
+    p = new DijkstraShortestPaths<UndirectedWeightedGraph<int>>(g, i);
     for (int j = 1; j <= 6; ++j) {
       printf("%d", p->HasPathTo(j));
     }
@@ -80,7 +80,7 @@ delete g;
 
   printf("Next The BellmanFord\n");
   for (int i = 1; i <= 6; ++i) {
-    p = new BellmanFordShortestPaths<WeightedGraph<int>>(g, i);
+    p = new BellmanFordShortestPaths<UndirectedWeightedGraph<int>>(g, i);
     for (int j = 1; j <= 6; ++j) {
       printf("%d", p->HasPathTo(j));
     }
