@@ -30,6 +30,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             u = e.GetSource();
             v = e.GetDestination();
             typename TGraph::value_type w = e.GetWeight();
+            std::cout << w << std::endl;
             if(this->d[v] > this->d[u] + w)
                 this->d[v] = this->d[u] + w;
         }
