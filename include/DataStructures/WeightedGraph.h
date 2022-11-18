@@ -33,7 +33,7 @@ class WeightedGraph : public Graph{
 template <class T2>
 WeightedGraph<T2>::WeightedGraph():Graph()
 { 
-    static_assert(std::is_default_constructible<T2> == true, "TValue requires default constructor");
+    static_assert(std::is_default_constructible<T2>::value == true, "TValue requires default constructor");
 //    static_assert(std::is_same<std::char_traits, T2>::value != true, "TValue requires operator+");
 //    static_assert(std::is_same<std::string, T2>::value != true, "TValue requires operator+");
 //    static_assert(std::is_same<T2, char>::value != true, "TValue requires operator+");
