@@ -14,7 +14,7 @@ class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
 template <typename TGraph>
 BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source)
 {
-    this->INF = (typename TGraph::value_type)2147483647;
+    this->INF = (typename TGraph::value_type)1145141919;
     auto vertices = graph->GetVertices();
     //Initialize the distance
     for (auto p : vertices)
