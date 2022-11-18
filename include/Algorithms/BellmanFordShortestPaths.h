@@ -29,7 +29,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
         WeightedEdge<typename TGraph::value_type> tmp(v, u, w);
         Edges.push_back(tmp);   
     }
-
     this->cnt = 0;
     //Initialize the distance
     std::vector<int> vertices = graph->GetVertices();
