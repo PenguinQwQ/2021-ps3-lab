@@ -9,7 +9,7 @@
 template<class T, class U>
 std::pair<T, U> operator < (const std::pair<T, U>& x, const std::pair<T, U>& y)
 {
-    return x.first < y.first ||  ((x.first == y.first) && x.second < y.second);
+    return x.second < y.second;
 }
 
 template <class T2>
