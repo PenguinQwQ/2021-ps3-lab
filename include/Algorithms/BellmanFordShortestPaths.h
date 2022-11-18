@@ -32,7 +32,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
 
     this->cnt = 0;
     //Initialize the distance
-    auto vertices = graph->GetVertices();
+    std::vector<int> vertices = graph->GetVertices();
     for (auto p : vertices)
         this->vis[p] = false;
     this->vis[source] = true;
