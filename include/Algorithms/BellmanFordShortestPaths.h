@@ -8,6 +8,7 @@
 #include <assert.h>
 template<typename TGraph>
 class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
+    static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
     public:
         BellmanFordShortestPaths(const TGraph *graph, int source);
         ~BellmanFordShortestPaths(){};
@@ -28,7 +29,6 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     this->vis[source] = true;
     this->dfn[source] = (this->cnt)++;
     int V = vertices.size();
-    delete &vertices;
     auto edges = graph->GetEdges();
     for (int i = 1 ; i <= V - 1 ; i++)
         for (auto e : edges)
@@ -78,6 +78,5 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
             }
         }
-        delete &edges;
 }
 #endif

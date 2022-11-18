@@ -9,12 +9,10 @@
 #include <assert.h>
 template <typename TGraph>
 class ShortestPaths {
+  static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
  public:
   ShortestPaths(){};
-  ShortestPaths(const TGraph *graph, int source)
-  {
-    static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
-  };
+  ShortestPaths(const TGraph *graph, int source){};
   ~ShortestPaths(){};
  public:
   bool HasPathTo(int destination) const;

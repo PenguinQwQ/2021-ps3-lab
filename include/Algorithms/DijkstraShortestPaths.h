@@ -9,6 +9,7 @@
 
 template <typename TGraph>
 class DijkstraShortestPaths : public ShortestPaths<TGraph>{
+    static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
  public:
   DijkstraShortestPaths(const TGraph *graph, int source);
   ~DijkstraShortestPaths(){};
@@ -17,7 +18,6 @@ class DijkstraShortestPaths : public ShortestPaths<TGraph>{
 template <typename TGraph>
 DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int source)
 {
-    static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
     auto vec2 = graph->GetVertices();
     for (auto it : vec2)
     {
