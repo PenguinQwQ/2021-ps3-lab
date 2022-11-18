@@ -11,8 +11,8 @@ class ShortestPaths {
   ShortestPaths(){};
   ShortestPaths(const TGraph *graph, int source)
   {
-    static_assert((typename TGraph::value_type).GetConstructors() != NULL, "TValue requires default constructor");
-    static_assert((typename TGraph::value_type).operator+ != NULL, "TValue requires operator+");
+ //   static_assert((typename TGraph::value_type).GetConstructors() != NULL, "TValue requires default constructor");
+ //   static_assert((typename TGraph::value_type).operator+ != NULL, "TValue requires operator+");
   };
   ~ShortestPaths(){};
  public:
