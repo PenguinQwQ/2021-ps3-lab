@@ -63,7 +63,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
             if(undir)
             {
-                printf("%d->%d with weight %d \n", v, u, w);
+             //   printf("%d->%d with weight %d \n", v, u, w);
             if(this->vis[v] == false) continue;
             if(this->vis[v] && (this->vis[u] == false))
                 {
