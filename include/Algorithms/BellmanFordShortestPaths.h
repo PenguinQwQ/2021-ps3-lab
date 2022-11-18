@@ -17,6 +17,29 @@ class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
 template <typename TGraph>
 BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source)
 {
+    int u, v;
+    typename TGraph::value_type w;
+    std::vector<WeightedEdge<typename TGraph::value_type>> edges = graph->GetEdges();
+    std::vector<WeightedEdge<typename TGraph::value_type>> Edges = edges;
+    for (std::vector<WeightedEdge<typename TGraph::value_type>>::iterator e = edges.begin() ; e != edges.end() ; e++)  
+    {
+        u = e.GetSource();
+        v = e.GetDestination();
+        w = e.GetWeight();
+        Edges.push_back(make_pair(pair<int, int>(v, u), w));
+    }
+
+    this->cnt = 0;
+    //Initialize the distance
+    auto vertices = graph->GetVertices();
+    for (auto p : vertices)
+    {
+        this->vis[p] = false;
+        this->dfn[p] = 0;
+    }
+
+
+/*
     this->cnt = 0;
     //Initialize the distance
     auto vertices = graph->GetVertices();
@@ -78,5 +101,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             }
             }
         }
+
+        */
 }
 #endif
