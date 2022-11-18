@@ -31,9 +31,8 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     for (int i = 1 ; i <= V - 1 ; i++)
     {
         for (auto u : vertices)
-        {
-            auto outedge = graph->GetOutgoingEdges(u);
-            for (auto e : outedge)
+        {  
+            for (auto e : graph->GetOutgoingEdges(u))
             {
                 v = e.GetDestination();
                 typename TGraph::value_type w = e.GetWeight();
