@@ -13,10 +13,8 @@ std::pair<T, U> operator < (const std::pair<T, U>& x, const std::pair<T, U>& y)
 
 template <class T2>
 class WeightedGraph : public Graph{
-
  public:
     typedef T2 value_type;
-
  public:
   WeightedGraph();
   ~WeightedGraph();
@@ -39,6 +37,7 @@ template <class T2>
 WeightedGraph<T2>::WeightedGraph():Graph()
 { 
     static_assert(std::is_constructible<T2>::value == true, "TValue requires default constructor");
+    static_assert(std::is_arithmetic<T2>::value == true, "TValue requires operator+");
     this->G.clear();}
 //Destructor
 template <class T2>

@@ -4,6 +4,7 @@
 #include <vector>
 #include <optional>
 #include <queue>
+#include<type_traits>
 const int N = 20000;
 template <typename TGraph>
 class ShortestPaths {
@@ -11,8 +12,7 @@ class ShortestPaths {
   ShortestPaths(){};
   ShortestPaths(const TGraph *graph, int source)
   {
- //   static_assert((typename TGraph::value_type).GetConstructors() != NULL, "TValue requires default constructor");
- //   static_assert((typename TGraph::value_type).operator+ != NULL, "TValue requires operator+");
+      static_assert(std::is_base_of<WeightedGraph, TGraph>::value == true, "TGraph should be weighted");
   };
   ~ShortestPaths(){};
  public:
