@@ -33,12 +33,16 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     this->cnt = 0;
     //Initialize the distance
     std::vector<int> vertices = graph->GetVertices();
-    for (auto p : vertices)
-        this->vis[p] = false;
+    for (std::vector<int>::iterator it = vertices.begin() ; it != vertices.end() ; it++)
+        this->vis[*it] = false;
     this->vis[source] = true;
     int V = vertices.size();
     for (int i = 1 ; i <= V - 1 ; i++)
     {
+        for (std::vector<WeightedEdge<typename TGraph::value_type>>::iterator it = Edges.begin() ; it != Edges.end() ; it++)
+        {
+
+        }
         for (auto e : Edges)
         {
         u = e.GetSource();
