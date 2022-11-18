@@ -26,9 +26,8 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     }
     this->d[source] = typename TGraph::value_type();
     this->vis[source] = true;
-
-    auto edges = graph->GetEdges();
     int V = vertices.size(), v;
+
     for (int i = 1 ; i <= V - 1 ; i++)
     {
         for (auto u : vertices)
