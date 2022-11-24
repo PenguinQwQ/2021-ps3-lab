@@ -23,12 +23,9 @@ class MultiSourceShortestPaths {
     int cnt = 0;
     for (auto i : p)
       {
-       
         NodeMap.insert(std::pair<int, int>(i, ++cnt));
         NodeVal.insert(std::pair<int, int>(cnt, i));
-         printf("%d->%d", cnt, i);
       }
-    printf("NodeMap size is %d\n", NodeMap.size());
   };
   ~MultiSourceShortestPaths(){};
  public:
@@ -54,8 +51,6 @@ std::optional<typename TGraph::value_type> MultiSourceShortestPaths<TGraph>::Try
   if(this->connect[this->NodeMap.at(source)][this->NodeMap.at(destination)]) return this->dis[NodeMap.at(source)][NodeMap.at(destination)];
   else return std::nullopt;
 }
-
-
 static std::vector<int> Path;
 static int Mid[M][M];
 static std::map<int, int> nodeval;
@@ -83,7 +78,6 @@ std::optional<std::vector<int>> MultiSourceShortestPaths<TGraph>::TryGetShortest
     for (int i = 0 ; i <= M - 1 ; i++)
       for (int j = 0 ; j <= M - 1 ; j++)
         Mid[i][j] = this->transport[i][j];
-
     Path.push_back(source);
     GetMid(this->NodeMap.at(source), this->NodeMap.at(destination));
     return Path;

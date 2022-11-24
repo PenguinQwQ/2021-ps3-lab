@@ -27,17 +27,14 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
 //         printf("%d->%d", cnt, i);
       }
 //    printf("NodeMap size is %d\n", this->NodeMap.size());
-
-
-    auto vertices = graph->GetVertices();
-    for (auto i : vertices)
-        for (auto j : vertices)
+    for (auto i : p)
+        for (auto j : p)
             {
                 int u = this->NodeMap[i], v = this->NodeMap[j];
                 this->transport[u][v] = -1;
                 if(u == v)
                 {     
-                    this->transport[u][v] = i;
+                    this->transport[u][v] = u;
                     this->connect[u][v] = true;
                     this->dis[u][v] = typename TGraph::value_type();
                     continue;                    
@@ -51,9 +48,9 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                 }
                 this->connect[u][v] = false;
             }
-    for (auto t : vertices)
-        for (auto i : vertices)
-            for (auto j: vertices)
+    for (auto t : p)
+        for (auto i : p)
+            for (auto j: p)
             {
                 int k = this->NodeMap[t], u = this->NodeMap[i], v = this->NodeMap[j];
                 if((this->connect[u][k] == false) || (this->connect[k][v] == false)) continue;
