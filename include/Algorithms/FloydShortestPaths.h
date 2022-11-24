@@ -18,6 +18,18 @@ class FloydShortestPaths : public MultiSourceShortestPaths<TGraph> {
 template <typename TGraph>
 FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
 {
+    auto p = graph->GetVertices();
+    int cnt = 0;
+    for (auto i : p)
+      {
+       
+        NodeMap.insert(std::pair<int, int>(i, ++cnt));
+        NodeVal.insert(std::pair<int, int>(cnt, i));
+         printf("%d->%d", cnt, i);
+      }
+    printf("NodeMap size is %d\n", NodeMap.size());
+
+
     auto vertices = graph->GetVertices();
     for (auto i : vertices)
         for (auto j : vertices)
