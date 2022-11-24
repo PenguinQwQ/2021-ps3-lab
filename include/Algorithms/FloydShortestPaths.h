@@ -11,12 +11,12 @@ template <typename TGraph>
 class FloydShortestPaths : public MultiSourceShortestPaths<TGraph>{
    // static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
  public:
-  FloydShortestPaths(const TGraph *graph, int source);
+  FloydShortestPaths(const TGraph *graph);
   ~FloydShortestPaths(){};
 };
 
 template <typename TGraph>
-FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph, int source)
+FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
 {
     auto vertices = graph->GetVertices();
     for (auto i : vertices)
