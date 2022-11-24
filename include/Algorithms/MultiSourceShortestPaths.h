@@ -38,7 +38,7 @@ std::optional<typename TGraph::value_type> MultiSourceShortestPaths<TGraph>::Try
 
 
 static std::vector<int> Path;
-static int Mid[N][N];
+static int Mid[M][M];
 
 void GetMid(int u, int v)
 {
