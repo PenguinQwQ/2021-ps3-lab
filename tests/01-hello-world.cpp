@@ -91,6 +91,8 @@ delete g;
   printf("Next The Floyd!\n");
   MultiSourceShortestPaths<UndirectedWeightedGraph<int>> *mp = nullptr;
   mp = new FloydShortestPaths<UndirectedWeightedGraph<int> >(g);
+    for (int i = 1 ; i <= 6 ; i++)
+      printf("%d ", mp->HasPathOf(1,i));
     printf("\n");
   delete mp;
   delete g;
