@@ -32,7 +32,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
     for (auto i : vertices)
         for (auto j : vertices)
             {
-                int u = NodeMap[i], v = NodeMap[j];
+                int u = this->NodeMap[i], v = this->NodeMap[j];
                 this->transport[u][v] = -1;
                 if(u == v)
                 {     
@@ -41,11 +41,11 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                     this->dis[u][v] = typename TGraph::value_type();
                     continue;                    
                 }
-                if(graph->ContainsEdge(NodeVal[u], NodeVal[v]))
+                if(graph->ContainsEdge(this->NodeVal[u], this->NodeVal[v]))
                 {
                     this->transport[u][v] = u;
                     this->connect[u][v] = true;
-                    this->dis[u][v] = graph->GetWeight(NodeVal[u], NodeVal[v]);
+                    this->dis[u][v] = graph->GetWeight(this->NodeVal[u], this->NodeVal[v]);
                     continue;
                 }
                 this->connect[u][v] = false;
@@ -54,7 +54,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
         for (auto i : vertices)
             for (auto j: vertices)
             {
-                int k = NodeMap[t], u = NodeMap[i], v = NodeMap[j];
+                int k = this->NodeMap[t], u = this->NodeMap[i], v = this->NodeMap[j];
                 if((this->connect[u][k] == false) || (this->connect[k][v] == false)) continue;
                 if(k == u || u == v || v == k) continue;
                 if(this->connect[u][k] && this->connect[k][v] && (this->connect[u][v] == false))
