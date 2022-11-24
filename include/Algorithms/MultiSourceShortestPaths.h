@@ -4,6 +4,7 @@
 #include <vector>
 #include <optional>
 
+const int N = 2000;
 
 template <typename TGraph>
 class MultiSourceShortestPaths {
@@ -33,7 +34,7 @@ bool MultiSourceShortestPaths<TGraph>::HasPathOf(int source, int destination) co
 template <typename TGraph>
 std::optional<typename TGraph::value_type> MultiSourceShortestPaths<TGraph>::TryGetDistanceOf(int source, int destination) const
 {
-  if(this->connect[source][destination]) return dis[source][destination];
+  if(this->connect[source][destination]) return this->dis[source][destination];
   else return std::nullopt;
 }
 

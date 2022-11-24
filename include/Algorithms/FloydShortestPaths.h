@@ -8,7 +8,7 @@
 #include <assert.h>
 
 template <typename TGraph>
-class FloydShortestPaths : public MultiSourceShortestPaths<TGraph>{
+class FloydShortestPaths : public MultiSourceShortestPaths<TGraph> {
    // static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
  public:
   FloydShortestPaths(const TGraph *graph);
