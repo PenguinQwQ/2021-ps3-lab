@@ -22,7 +22,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
     for (auto i : vertices)
         for (auto j : vertices)
             {
-                this->pre[i][j] = -1;
+                this->transport[i][j] = -1;
                 if(i == j)
                 {
                     this->transport[i][j] = i;
