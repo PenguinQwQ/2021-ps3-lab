@@ -5,7 +5,7 @@
 #include <optional>
 #include <map>
 
-const int M = 2000;
+const int M = 8000;
 
 template <typename TGraph>
 class MultiSourceShortestPaths {
