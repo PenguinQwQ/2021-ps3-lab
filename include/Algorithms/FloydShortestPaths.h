@@ -23,14 +23,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
         for (auto j : vertices)
             {
                 this->transport[i][j] = -1;
-                if(i == j)
-                {
-                    this->transport[i][j] = i;
-                    this->connect[i][j] = true;
-                    this->dis[i][j] = typename TGraph::value_type();
-                    continue;
-                }
-                if(graph->ContainsEdge(i,j))
+                if(graph->ContainsEdge(i, j))
                 {
                     this->transport[i][j] = i;
                     this->connect[i][j] = true;
@@ -44,7 +37,6 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
             for (auto v : vertices)
             {
                 if((this->connect[u][k] == false) || (this->connect[k][v] == false)) continue;
-                if(u == v || u == k || k == v) continue;
                 if(this->connect[u][k] && this->connect[k][v] && (this->connect[u][v] == false))
                     {
                         this->connect[u][v] = true;
