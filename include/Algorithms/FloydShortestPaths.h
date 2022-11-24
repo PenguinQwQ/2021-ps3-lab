@@ -23,10 +23,10 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
         for (auto j : vertices)
             {
                 this->transport[i][j] = -1;
+                this->connect[i][j] = false;
                 if(i == j)
                 {     
                     this->transport[i][j] = i;
-                    this->connect[i][j] = true;
                     this->dis[i][j] = typename TGraph::value_type();
                     continue;                    
                 }
@@ -37,7 +37,6 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                     this->dis[i][j] = graph->GetWeight(i,j);
                     continue;
                 }
-                this->connect[i][j] = false;
             }
     for (auto k : vertices)
         for (auto u : vertices)
