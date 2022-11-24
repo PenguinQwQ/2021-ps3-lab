@@ -22,12 +22,11 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
     int cnt = 0;
     for (auto i : p)
       {
-       
         this->NodeMap.insert(std::pair<int, int>(i, ++cnt));
         this->NodeVal.insert(std::pair<int, int>(cnt, i));
-         printf("%d->%d", cnt, i);
+//         printf("%d->%d", cnt, i);
       }
-    printf("NodeMap size is %d\n", this->NodeMap.size());
+//    printf("NodeMap size is %d\n", this->NodeMap.size());
 
 
     auto vertices = graph->GetVertices();
