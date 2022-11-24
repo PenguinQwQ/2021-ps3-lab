@@ -61,7 +61,7 @@ std::optional<std::vector<int>> MultiSourceShortestPaths<TGraph>::TryGetShortest
     Path.clear();
     nodeval.clear();
     nodeval = this->NodeVal;
-    if(this->connect[this->NodeMap[source]][this->NodeMap[destination]] == false) return std::nullopt;
+    if(this->connect[this->NodeMap.at(source)][this->NodeMap.at(destination)] == false) return std::nullopt;
     for (int i = 0 ; i <= M - 1 ; i++)
       for (int j = 0 ; j <= M - 1 ; j++)
         Mid[i][j] = this->transport[i][j];
