@@ -92,7 +92,7 @@ delete g;
   MultiSourceShortestPaths<UndirectedWeightedGraph<int>> *mp = nullptr;
   mp = new FloydShortestPaths<UndirectedWeightedGraph<int>>(g);
     for (int j = 1; j <= 6; ++j) {
-      printf("%d", mp->TryGetDistanceTo(j));
+      printf("%d", mp->TryGetDistanceOf(j));
     }
     printf("\n");
   delete mp;
