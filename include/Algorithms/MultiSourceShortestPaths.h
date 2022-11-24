@@ -23,8 +23,10 @@ class MultiSourceShortestPaths {
     int cnt = 0;
     for (auto i : p)
       {
+       
         NodeMap.insert(std::pair<int, int>(i, ++cnt));
         NodeVal.insert(std::pair<int, int>(cnt, i));
+         printf("%d->%d", cnt, i);
       }
     printf("NodeMap size is %d\n", NodeMap.size());
   };
