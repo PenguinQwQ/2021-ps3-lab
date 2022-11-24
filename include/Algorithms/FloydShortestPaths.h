@@ -19,16 +19,6 @@ template <typename TGraph>
 FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
 {
     auto vertices = graph->GetVertices();
-    int cnt = 0;
-    for (auto i : vertices)
-    {
-        this->NodeMap[i] = ++cnt;
-        this->NodeVal[cnt] = i;
-        /*
-        this->NodeMap.insert(std::pair<int, int>(i, ++cnt));//value->Node index
-        this->NodeVal.insert(std::pair<int, int>(cnt, i));//Node index->value
-        */
-    }
     for (auto i : vertices)
         for (auto j : vertices)
             {

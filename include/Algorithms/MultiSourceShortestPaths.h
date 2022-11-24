@@ -15,12 +15,17 @@ class MultiSourceShortestPaths {
   typename TGraph::value_type dis[M][M];
   bool connect[M][M];
   int transport[M][M];
-  TGraph *g;
  public:
   MultiSourceShortestPaths(){};
   MultiSourceShortestPaths(const TGraph *graph)
   {
-    g = graph;
+    auto p = graph->GetVertices();
+    int cnt = 0;
+    for (auto i : p)
+      {
+        NodeMap.insert(std::pair<int, int>(i, ++cnt));
+        NodeVal.insert(std::pair<int, int>(cnt, i));
+      }
   };
   ~MultiSourceShortestPaths(){};
  public:
