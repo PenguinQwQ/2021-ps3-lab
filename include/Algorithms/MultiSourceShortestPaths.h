@@ -16,12 +16,10 @@ class MultiSourceShortestPaths {
   bool HasPathOf(int source, int destination) const;
   std::optional<typename TGraph::value_type> TryGetDistanceOf(int source, int destination) const;
   std::optional<std::vector<int>> TryGetShortestPathOf(int source, int destination) const;
-  void GetMid(int u, int v);
  public:
   typename TGraph::value_type dis[M][M];
   bool connect[M][M];
   int transport[M][M];
-  static std::vector<int> Path;
 };
 
 template <typename TGraph>
@@ -38,23 +36,29 @@ std::optional<typename TGraph::value_type> MultiSourceShortestPaths<TGraph>::Try
   else return std::nullopt;
 }
 
-template <typename TGraph>
-void MultiSourceShortestPaths<TGraph>::GetMid(int u, int v)
+
+static std::vector<int> Path;
+static int Mid[N][N];
+
+void GetMid(int u, int v)
 {
-    if(this->transport[u][v] != -1) 
+    if(Mid[u][v] != -1) 
       {
-        Path.push_back(this->transport[u][v]);
-        GetMid(this->transport[u][v], v);
+        Path.push_back(Mid[u][v]);
+        GetMid(Mid[u][v], v);
       }
     else
       Path.push_back(v);
-    return;
 }
+
 template <typename TGraph>
 std::optional<std::vector<int>> MultiSourceShortestPaths<TGraph>::TryGetShortestPathOf(int source, int destination) const
 {
     Path.clear();
     if(this->connect[source][destination] == false) return std::nullopt;
+    for (int i = 0 ; i <= M ; i++)
+      for (int j = 0 ; j <= M ; j++)
+        Mid[i][j] = this->transport[i][j];
     Path.push_back(source);
     GetMid(source, destination);
     return Path;
