@@ -1,5 +1,5 @@
-#ifndef DIJKSTRA_SHORTEST_PATHS
-#define DIJKSTRA_SHORTEST_PATHS
+#ifndef FLOYED_SHORTEST_PATHS
+#define FLOYED_SHORTEST_PATHS
 #include <vector>
 #include <optional>
 #include <utility>
