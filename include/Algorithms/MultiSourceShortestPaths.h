@@ -9,7 +9,7 @@ template <typename TGraph>
 class MultiSourceShortestPaths {
  public:
   MultiSourceShortestPaths(){};
-  MultiSourceShortestPaths(const TGraph *graph);
+  MultiSourceShortestPaths(const TGraph *graph){};
   ~MultiSourceShortestPaths();
  public:
   bool HasPathOf(int source, int destination) const;

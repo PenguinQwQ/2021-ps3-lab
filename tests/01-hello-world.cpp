@@ -12,8 +12,9 @@
 #include <Algorithms/ShortestPaths.h>
 #include <Algorithms/DijkstraShortestPaths.h>
 #include <Algorithms/BellmanFordShortestPaths.h>
+#include <Algorithms/MultiSourceShortestPaths.h>
 
-
+#include <Algorithms/FloydShortestPaths.h>
 
 int main()
 {
@@ -87,7 +88,13 @@ delete g;
     printf("\n");
     delete p;
   }
-
+  printf("Next The Floyd!\n");
+  FloydShortestPaths<UndirectedWeightedGraph<int>>(g);
+    for (int j = 1; j <= 6; ++j) {
+      printf("%d", p->TryGetDistanceTo(j));
+    }
+    printf("\n");
+  delete p;
   delete g;
     return 0;
 }
