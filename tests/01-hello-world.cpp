@@ -89,7 +89,7 @@ delete g;
     delete p;
   }
   printf("Next The Floyd!\n");
-  FloydShortestPaths<UndirectedWeightedGraph<int>>(g);
+  p = new FloydShortestPaths<UndirectedWeightedGraph<int>>(g);
     for (int j = 1; j <= 6; ++j) {
       printf("%d", p->TryGetDistanceTo(j));
     }
