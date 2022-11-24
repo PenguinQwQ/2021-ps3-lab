@@ -27,14 +27,14 @@ class MultiSourceShortestPaths {
 template <typename TGraph>
 bool MultiSourceShortestPaths<TGraph>::HasPathOf(int source, int destination) const
 {
-  if(this->connect[NodeMap[source]][NodeMap[destination]]) return true;
+  if(this->connect[this->NodeMap[source]][this->NodeMap[destination]]) return true;
   else return false;
 }
 
 template <typename TGraph>
 std::optional<typename TGraph::value_type> MultiSourceShortestPaths<TGraph>::TryGetDistanceOf(int source, int destination) const
 {
-  if(this->connect[NodeMap[source]][NodeMap[destination]]) return this->dis[NodeMap[source]][NodeMap[destination]];
+  if(this->connect[this->NodeMap[source]][this->NodeMap[destination]]) return this->dis[NodeMap[source]][NodeMap[destination]];
   else return std::nullopt;
 }
 
@@ -60,13 +60,13 @@ std::optional<std::vector<int>> MultiSourceShortestPaths<TGraph>::TryGetShortest
     Path.clear();
     nodeval.clear();
     nodeval = this->NodeVal;
-    if(this->connect[NodeMap[source]][NodeMap[destination]] == false) return std::nullopt;
+    if(this->connect[this->NodeMap[source]][this->NodeMap[destination]] == false) return std::nullopt;
     for (int i = 0 ; i <= M - 1 ; i++)
       for (int j = 0 ; j <= M - 1 ; j++)
         Mid[i][j] = this->transport[i][j];
 
     Path.push_back(source);
-    GetMid(NodeMap[source], NodeMap[destination]);
+    GetMid(this->NodeMap[source], this->NodeMap[destination]);
     return Path;
 }
 #endif
