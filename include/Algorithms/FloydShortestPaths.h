@@ -19,29 +19,38 @@ template <typename TGraph>
 FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
 {
     auto vertices = graph->GetVertices();
+    int cnt = 0;
+    for (auto i : vertices)
+    {
+        this->NodeMap.insert(std::pair<int, int>(i, ++cnt));//value->Node index
+        this->NodeVal.insert(std::pair<int, int>(cnt, i));//Node index->value
+    }
     for (auto i : vertices)
         for (auto j : vertices)
             {
-                this->transport[i][j] = -1;
-                this->connect[i][j] = false;
-                if(i == j)
+                int u = *NodeMap.find(i), v = *NodeMap.find(j);
+                this->transport[u][v] = -1;
+                if(u == v)
                 {     
-                    this->transport[i][j] = i;
-                    this->dis[i][j] = typename TGraph::value_type();
+                    this->transport[u][v] = i;
+                    this->connect[u][v] = true;
+                    this->dis[u][v] = typename TGraph::value_type();
                     continue;                    
                 }
-                if(graph->ContainsEdge(i, j))
+                if(graph->ContainsEdge(*NodeVal.find(u), *NodeVal.find(v)))
                 {
-                    this->transport[i][j] = i;
-                    this->connect[i][j] = true;
-                    this->dis[i][j] = graph->GetWeight(i,j);
+                    this->transport[u][v] = u;
+                    this->connect[u][v] = true;
+                    this->dis[u][v] = graph->GetWeight(*NodeVal.find(u),*NodeVal.find(v));
                     continue;
                 }
+                this->connect[u][v] = false;
             }
-    for (auto k : vertices)
-        for (auto u : vertices)
-            for (auto v : vertices)
+    for (auto t : vertices)
+        for (auto i : vertices)
+            for (auto j: vertices)
             {
+                int k = *NodeMap.find(t), u = *NodeMap.find(i), v = *NodeMap.find(j);
                 if((this->connect[u][k] == false) || (this->connect[k][v] == false)) continue;
                 if(k == u || u == v || v == k) continue;
                 if(this->connect[u][k] && this->connect[k][v] && (this->connect[u][v] == false))
