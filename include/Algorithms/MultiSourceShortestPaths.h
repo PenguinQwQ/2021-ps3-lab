@@ -26,6 +26,7 @@ class MultiSourceShortestPaths {
         NodeMap.insert(std::pair<int, int>(i, ++cnt));
         NodeVal.insert(std::pair<int, int>(cnt, i));
       }
+    printf("NodeMap size is %d\n", NodeMap.size());
   };
   ~MultiSourceShortestPaths(){};
  public:
