@@ -22,15 +22,17 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
     for (auto i : vertices)
         for (auto j : vertices)
             {
-                this->transport[i][j] = -1;
+                this->pre[i][j] = -1;
                 if(i == j)
                 {
+                    this->transport[i][j] = i;
                     this->connect[i][j] = true;
                     this->dis[i][j] = typename TGraph::value_type();
                     continue;
                 }
                 if(graph->ContainsEdge(i,j))
                 {
+                    this->transport[i][j] = i;
                     this->connect[i][j] = true;
                     this->dis[i][j] = graph->GetWeight(i,j);
                     continue;
