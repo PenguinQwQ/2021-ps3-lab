@@ -22,13 +22,17 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
     int cnt = 0;
     for (auto i : vertices)
     {
+        NodeMap[i] = ++cnt;
+        NodeVal[cnt] = i;
+        /*
         this->NodeMap.insert(std::pair<int, int>(i, ++cnt));//value->Node index
         this->NodeVal.insert(std::pair<int, int>(cnt, i));//Node index->value
+        */
     }
     for (auto i : vertices)
         for (auto j : vertices)
             {
-                int u = *NodeMap.find(i), v = *NodeMap.find(j);
+                int u = NodeMap[i], v = NodeMap[j];
                 this->transport[u][v] = -1;
                 if(u == v)
                 {     
@@ -37,11 +41,11 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                     this->dis[u][v] = typename TGraph::value_type();
                     continue;                    
                 }
-                if(graph->ContainsEdge(*NodeVal.find(u), *NodeVal.find(v)))
+                if(graph->ContainsEdge(NodeVal[u], NodeVal[v]))
                 {
                     this->transport[u][v] = u;
                     this->connect[u][v] = true;
-                    this->dis[u][v] = graph->GetWeight(*NodeVal.find(u),*NodeVal.find(v));
+                    this->dis[u][v] = graph->GetWeight(NodeVal[u], NodeVal[v]);
                     continue;
                 }
                 this->connect[u][v] = false;
@@ -50,7 +54,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
         for (auto i : vertices)
             for (auto j: vertices)
             {
-                int k = *NodeMap.find(t), u = *NodeMap.find(i), v = *NodeMap.find(j);
+                int k = NodeMap[t], u = NodeMap[i], v = NodeMap[j];
                 if((this->connect[u][k] == false) || (this->connect[k][v] == false)) continue;
                 if(k == u || u == v || v == k) continue;
                 if(this->connect[u][k] && this->connect[k][v] && (this->connect[u][v] == false))
