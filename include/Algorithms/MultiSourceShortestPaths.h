@@ -10,8 +10,13 @@ const int M = 8000;
 template <typename TGraph>
 class MultiSourceShortestPaths {
  public:
+  const TGraph *g;
+ public:
   MultiSourceShortestPaths(){};
-  MultiSourceShortestPaths(const TGraph *graph){};
+  MultiSourceShortestPaths(const TGraph *graph)
+  {
+    g = graph;
+  };
   ~MultiSourceShortestPaths(){};
  public:
   bool HasPathOf(int source, int destination) const;
@@ -28,6 +33,8 @@ class MultiSourceShortestPaths {
 template <typename TGraph>
 bool MultiSourceShortestPaths<TGraph>::HasPathOf(int source, int destination) const
 {
+  if(!(this->g->ContainsVertex(source))) return false;
+  if(!(this->g->ContainsVertex(destination))) return false;
   if(this->connect[this->NodeMap.at(source)][this->NodeMap.at(destination)]) return true;
   else return false;
 }
@@ -35,6 +42,8 @@ bool MultiSourceShortestPaths<TGraph>::HasPathOf(int source, int destination) co
 template <typename TGraph>
 std::optional<typename TGraph::value_type> MultiSourceShortestPaths<TGraph>::TryGetDistanceOf(int source, int destination) const
 {
+  if(!(this->g->ContainsVertex(source))) return std::nullopt;
+  if(!(this->g->ContainsVertex(destination))) return std::nullopt;
   if(this->connect[this->NodeMap.at(source)][this->NodeMap.at(destination)]) return this->dis[NodeMap.at(source)][NodeMap.at(destination)];
   else return std::nullopt;
 }
