@@ -91,14 +91,6 @@ delete g;
   printf("Next The Floyd!\n");
   MultiSourceShortestPaths<UndirectedWeightedGraph<int>> *mp = nullptr;
   mp = new FloydShortestPaths<UndirectedWeightedGraph<int> >(g);
-    for (int j = 1; j <= 6; ++j) {
-      auto vec = mp->TryGetShortestPathOf(1, j);
-      printf("%d->%d:\n", 1, j);
-      for (auto index : vec)
-        printf("%d ", index);
-      printf("\n");
- //     std::cout <<  mp->TryGetDistanceOf(1, j) << std::endl;
-    }
     printf("\n");
   delete mp;
   delete g;
