@@ -56,8 +56,8 @@ std::optional<std::vector<int>> MultiSourceShortestPaths<TGraph>::TryGetShortest
 {
     Path.clear();
     if(this->connect[source][destination] == false) return std::nullopt;
-    for (int i = 0 ; i <= M ; i++)
-      for (int j = 0 ; j <= M ; j++)
+    for (int i = 0 ; i <= M-1 ; i++)
+      for (int j = 0 ; j <= M-1 ; j++)
         Mid[i][j] = this->transport[i][j];
     Path.push_back(source);
     GetMid(source, destination);
