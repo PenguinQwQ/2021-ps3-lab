@@ -4,7 +4,7 @@
 #include <vector>
 #include <optional>
 
-const int M = 8000;
+const int M = 1000;
 
 template <typename TGraph>
 class MultiSourceShortestPaths {
