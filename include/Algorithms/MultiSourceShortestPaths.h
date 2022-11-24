@@ -4,7 +4,7 @@
 #include <vector>
 #include <optional>
 
-const int N = 2000;
+const int M = 2000;
 
 template <typename TGraph>
 class MultiSourceShortestPaths {
@@ -18,9 +18,9 @@ class MultiSourceShortestPaths {
   std::optional<std::vector<int>> TryGetShortestPathOf(int source, int destination) const;
   void GetMid(int u, int v);
  public:
-  typename TGraph::value_type dis[N][N];
-  bool connect[N][N];
-  int transport[N][N];
+  typename TGraph::value_type dis[M][M];
+  bool connect[M][M];
+  int transport[M][M];
   static std::vector<int> Path;
 };
 
