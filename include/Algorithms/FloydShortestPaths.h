@@ -39,15 +39,36 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                     this->dis[u][v] = typename TGraph::value_type();
                     continue;                    
                 }
-                if(graph->ContainsEdge(this->NodeVal[u], this->NodeVal[v]))
+                if(graph->ContainsEdge(i, j))
                 {
                     this->transport[u][v] = u;
                     this->connect[u][v] = true;
-                    this->dis[u][v] = graph->GetWeight(this->NodeVal[u], this->NodeVal[v]);
+                    this->dis[u][v] = graph->GetWeight(i, j);
                     continue;
                 }
                 this->connect[u][v] = false;
             }
+
+    for (int k = 1 ; k <= cnt ; k++)
+        for (int u = 1 ; u <= cnt ; u++)
+            for (int v = 1 ; v <= cnt ; v++)
+                {
+                    if(this->connect[u][k] && this->connect[k][v] && (this->connect[u][v] == false))
+                        {
+                            this->connect[u][v] = true;
+                            this->dis[u][v] = this->dis[u][k] + this->dis[k][v];
+                            this->transport[u][v] = k;
+                            continue;
+                        }
+                    if(this->connect[u][k] && this->connect[k][v] && this->connect[u][v] && (this->dis[u][v] > this->dis[u][k] + this->dis[k][v]))
+                        {
+                            this->dis[u][v] = this->dis[u][k] + this->dis[k][v];
+                            this->transport[u][v] = k;
+                            continue;                           
+                        }
+                }
+    
+    /*
     for (auto t : p)
         for (auto i : p)
             for (auto j: p)
@@ -69,6 +90,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                         continue;
                 }
             }
+            */
 }
 
 #endif
