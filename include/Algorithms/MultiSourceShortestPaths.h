@@ -10,7 +10,7 @@ class MultiSourceShortestPaths {
  public:
   MultiSourceShortestPaths(){};
   MultiSourceShortestPaths(const TGraph *graph){};
-  ~MultiSourceShortestPaths();
+  ~MultiSourceShortestPaths(){};
  public:
   bool HasPathOf(int source, int destination) const;
   std::optional<typename TGraph::value_type> TryGetDistanceOf(int source, int destination) const;
