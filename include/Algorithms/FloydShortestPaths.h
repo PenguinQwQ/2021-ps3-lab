@@ -24,9 +24,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
       {
         this->NodeMap.insert(std::pair<int, int>(i, ++cnt));
         this->NodeVal.insert(std::pair<int, int>(cnt, i));
-//         printf("%d->%d", cnt, i);
       }
-//    printf("NodeMap size is %d\n", this->NodeMap.size());
     for (auto i : p)
         for (auto j : p)
             {
@@ -34,14 +32,12 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                 this->transport[u][v] = -1;
                 if(u == v)
                 {     
-                    this->transport[u][v] = u;
                     this->connect[u][v] = true;
                     this->dis[u][v] = typename TGraph::value_type();
                     continue;                    
                 }
                 if(graph->ContainsEdge(i, j))
                 {
-                    this->transport[u][v] = u;
                     this->connect[u][v] = true;
                     this->dis[u][v] = graph->GetWeight(i, j);
                     continue;
