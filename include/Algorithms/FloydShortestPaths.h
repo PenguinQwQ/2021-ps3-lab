@@ -6,7 +6,7 @@
 #include <Algorithms/MultiSourceShortestPaths.h>
 #include <iostream>
 #include <assert.h>
-#include <GLException.h>
+#include <Exceptions/GLException.h>
 
 template <typename TGraph>
 class FloydShortestPaths : public MultiSourceShortestPaths<TGraph> {

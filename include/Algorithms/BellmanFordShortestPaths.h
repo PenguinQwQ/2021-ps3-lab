@@ -7,7 +7,7 @@
 #include <iostream>
 #include <queue>
 #include <assert.h>
-#include <GLException.h>
+#include <Exceptions/GLException.h>
 template<typename TGraph>
 class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
     static_assert(std::is_default_constructible<typename TGraph::value_type>::value == true, "TValue requires default constructor");
