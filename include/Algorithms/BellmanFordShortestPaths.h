@@ -63,7 +63,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                         const std::string str = "Bellman-Ford";
                         throw GLException(str);
                         */
-                const std::string str = "Bellman-Ford";
+                std::string str = "Bellman-Ford";
                 throw NegativeCycleException(str);
                     }
                 }

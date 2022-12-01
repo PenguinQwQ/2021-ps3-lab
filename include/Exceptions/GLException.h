@@ -11,6 +11,7 @@ class GLException : public std::exception {
  protected:
   std::string message;
  public:
+  GLException(){};
   explicit GLException(const std::string &s);
   virtual std::string GetMessage() const;
 };

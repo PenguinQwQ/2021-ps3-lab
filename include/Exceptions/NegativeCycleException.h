@@ -8,6 +8,12 @@
 #include <Exceptions/GLException.h>
  
 class NegativeCycleException : public GLException {
+    public:
+        NegativeCycleException(){};
+        NegativeCycleException(std::string str)
+        {
+            this->message = str;
+        };
 };
 
 /*
