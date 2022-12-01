@@ -67,7 +67,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
     
     try{
         for (int i = 1 ; i <= cnt ; i++)
-            if(this->dis[i][i] < 0)
+            if(this->dis[i][i] < typename TGraph::value_type())
             {
                 const std::string str = "Floyd";
                 throw GLException(str);
