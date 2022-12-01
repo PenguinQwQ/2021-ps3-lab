@@ -6,6 +6,7 @@
 #include <Algorithms/MultiSourceShortestPaths.h>
 #include <iostream>
 #include <assert.h>
+#include <GLException.h>
 
 template <typename TGraph>
 class FloydShortestPaths : public MultiSourceShortestPaths<TGraph> {
@@ -44,7 +45,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                 }
                 this->connect[u][v] = false;
             }
-
+ 
     for (int k = 1 ; k <= cnt ; k++)
         for (int u = 1 ; u <= cnt ; u++)
             for (int v = 1 ; v <= cnt ; v++)
@@ -64,6 +65,15 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                         }
                 }
     
+    try{
+        for (int i = 1 ; i <= cnt ; i++)
+            if(this->dis[i][i] < 0)
+                throw NegativeCycleException("Floyd");
+    }
+    catch(NegativeCycleException err)
+    {
+        std::cout << err.GetMessage();
+    }
     /*
     for (auto t : p)
         for (auto i : p)

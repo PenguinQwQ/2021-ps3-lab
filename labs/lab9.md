@@ -1,7 +1,7 @@
 # Lab 9 - 异常
 
 本次我们需要实现对异常的支持，在`include/Exceptions/GLException`中已经定义了`GLException`(其实现也已在`source/Exceptions/GLException.cpp`中给出)，**请在`include/Exceptions`中定义`NegativeCycleException`**，并继承自`GLException`。
-
+ 
 ## 不符合规约的情况
 
 在以前的lab中，我们使用过`static_assert`来检查传入的模板参数是否符合某些约束条件（C++20中将引入concept以简化代码写法），以此在编译期拒绝掉不符合规约的情况。

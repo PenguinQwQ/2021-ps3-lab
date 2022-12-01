@@ -4,8 +4,9 @@
 #include <iostream>
 #include <exception>
 #include <string>
-
+ 
 class GLException : public std::exception {
+ 
  protected:
   std::string message;
  public:
@@ -14,6 +15,11 @@ class GLException : public std::exception {
 };
 
 ostream &operator<<(ostream &os, const GLException &e);
+
+
+class NegativeCycleException : public GLException {
+};
+
 
 #endif
 
