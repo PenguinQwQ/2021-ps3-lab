@@ -68,7 +68,11 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
     try{
         for (int i = 1 ; i <= cnt ; i++)
             if(this->dis[i][i] < 0)
-                throw NegativeCycleException("Floyd");
+            {
+                char str[] = "Floyd";
+                throw NegativeCycleException(str);
+            
+            }
     }
     catch(NegativeCycleException err)
     {

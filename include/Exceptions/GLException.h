@@ -4,6 +4,7 @@
 #include <iostream>
 #include <exception>
 #include <string>
+#include <cstring>
  
 class GLException : public std::exception {
  
@@ -18,6 +19,15 @@ ostream &operator<<(ostream &os, const GLException &e);
 
 
 class NegativeCycleException : public GLException {
+  public:
+  char err_buf[128];
+  public:
+  NegativeCycleException(char *str)
+  {
+    memset(err_buf, 0, sizeof(err_buf));
+    strcpy(err_buf, str);
+  }
+
 };
 
 
