@@ -7,6 +7,7 @@
 #include <iostream>
 #include <assert.h>
 #include <Exceptions/GLException.h>
+#include <exception>
 
 template <typename TGraph>
 class FloydShortestPaths : public MultiSourceShortestPaths<TGraph> {
@@ -69,14 +70,20 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
         for (int i = 1 ; i <= cnt ; i++)
             if(this->dis[i][i] < typename TGraph::value_type())
             {
+                /*
                 const std::string str = "Floyd";
                 throw GLException(str);
-            
+                */
+               throw "Floyd";
             }
     }
     catch(GLException err)
     {
         std::cout << err.GetMessage();
+    }
+    catch(const char* str)
+    {
+        std::cout << str;
     }
     /*
     for (auto t : p)

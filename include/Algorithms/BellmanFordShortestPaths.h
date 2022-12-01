@@ -59,8 +59,11 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                     this->reach[v] = true;
                     if(this->SPFA_cnt[v] >= p_n)
                     {
+                        /*
                         const std::string str = "Bellman-Ford";
                         throw GLException(str);
+                        */
+                       throw "Bellman-Ford";
                     }
                 }
             }
@@ -70,6 +73,10 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
     catch(GLException err)
     {
         std::cout << err.GetMessage();
+    }
+    catch(const char* str)
+    {
+        std::cout << str;
     }
 }
 
