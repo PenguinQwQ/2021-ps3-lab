@@ -69,12 +69,12 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
         for (int i = 1 ; i <= cnt ; i++)
             if(this->dis[i][i] < 0)
             {
-                char str[] = "Floyd";
-                throw NegativeCycleException(str);
+                const std::string str = "Floyd";
+                throw GLException(str);
             
             }
     }
-    catch(NegativeCycleException err)
+    catch(GLException err)
     {
         std::cout << err.GetMessage();
     }

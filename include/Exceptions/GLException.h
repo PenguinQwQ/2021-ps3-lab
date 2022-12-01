@@ -18,6 +18,7 @@ class GLException : public std::exception {
 ostream &operator<<(ostream &os, const GLException &e);
 
 
+/*
 class NegativeCycleException : public GLException {
   public:
   char err_buf[128];
@@ -30,6 +31,7 @@ class NegativeCycleException : public GLException {
   }
 
 };
+*/
 
 #endif
 

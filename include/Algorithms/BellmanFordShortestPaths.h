@@ -59,15 +59,15 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                     this->reach[v] = true;
                     if(this->SPFA_cnt[v] >= p_n)
                     {
-                        char str[] = "Bellman-Ford";
-                        throw NegativeCycleException(str);
+                        const std::string str = "Bellman-Ford";
+                        throw GLException(str);
                     }
                 }
             }
         }
     }
     }
-    catch(NegativeCycleException err)
+    catch(GLException err)
     {
         std::cout << err.GetMessage();
     }
