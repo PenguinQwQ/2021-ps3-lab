@@ -8,6 +8,7 @@
 #include <assert.h>
 #include <Exceptions/GLException.h>
 #include <exception>
+#include <Exceptions/NegativeCycleException.h>
 
 template <typename TGraph>
 class FloydShortestPaths : public MultiSourceShortestPaths<TGraph> {
