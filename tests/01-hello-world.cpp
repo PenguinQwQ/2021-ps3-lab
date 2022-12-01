@@ -62,10 +62,10 @@ delete g;
   for (int i = 1; i <= 6; ++i) {
     g->AddVertex(i);
   }
-  g->AddEdge(1, 2, 1);
-  g->AddEdge(2, 3, 2);
-  g->AddEdge(3, 4, 3);
-  g->AddEdge(4, 1, 4);
+  g->AddEdge(1, 2, -1);
+  g->AddEdge(2, 3, -2);
+  g->AddEdge(3, 4, -3);
+  g->AddEdge(4, 1, -4);
   g->AddEdge(5, 6, 5);
   g->AddEdge(6, 5, 6);
   
