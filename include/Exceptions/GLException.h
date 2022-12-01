@@ -22,6 +22,7 @@ class NegativeCycleException : public GLException {
   public:
   char err_buf[128];
   public:
+  explicit NegativeCycleException(const std::string &s);
   NegativeCycleException(char *str)
   {
     memset(err_buf, 0, sizeof(err_buf));
@@ -29,7 +30,6 @@ class NegativeCycleException : public GLException {
   }
 
 };
-
 
 #endif
 
