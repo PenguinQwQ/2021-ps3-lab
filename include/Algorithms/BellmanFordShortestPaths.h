@@ -19,7 +19,6 @@ class BellmanFordShortestPaths : public ShortestPaths<TGraph> {
 template <typename TGraph>
 BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source)
 {
-    try{
     int u, v;
     typename TGraph::value_type w;
     std::queue<int> q;
@@ -63,20 +62,12 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
                         const std::string str = "Bellman-Ford";
                         throw GLException(str);
                         */
-                       throw "Bellman-Ford";
+                       NegativeCycleException err(std::string("Bellman-Ford"));
+                       throw err;
                     }
                 }
             }
         }
-    }
-    }
-    catch(GLException err)
-    {
-        std::cout << err.GetMessage();
-    }
-    catch(const char* str)
-    {
-        std::cout << str;
     }
 }
 

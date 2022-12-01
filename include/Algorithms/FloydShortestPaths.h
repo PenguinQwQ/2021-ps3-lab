@@ -66,7 +66,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                         }
                 }
     
-    try{
+
         for (int i = 1 ; i <= cnt ; i++)
             if(this->dis[i][i] < typename TGraph::value_type())
             {
@@ -74,17 +74,11 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                 const std::string str = "Floyd";
                 throw GLException(str);
                 */
-               throw "Floyd";
+               //throw "Floyd";
+                       NegativeCycleException err(std::string("Floyd"));
+                       throw err;
             }
-    }
-    catch(GLException err)
-    {
-        std::cout << err.GetMessage();
-    }
-    catch(const char* str)
-    {
-        std::cout << str;
-    }
+  
     /*
     for (auto t : p)
         for (auto i : p)
