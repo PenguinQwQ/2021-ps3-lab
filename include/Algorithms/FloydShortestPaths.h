@@ -76,7 +76,8 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph)
                 throw GLException(str);
                 */
                //throw "Floyd";
-                       throw NegativeCycleException(std::string("Floyd"))
+                const std::string str = "Floyd";
+                throw NegativeCycleException(&str);
             }
   
     /*
